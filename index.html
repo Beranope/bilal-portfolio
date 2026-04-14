@@ -1,5 +1,4 @@
-<html lang="fr">
-<head>
+<html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bilal Berrane - Portfolio</title>
@@ -359,8 +358,8 @@
         </a>
         
         <div class="logo-center" id="secret-logo-btn">
-            <video src="logo.mp4" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"></video>
-            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: none;">
+            <video src="logo.mp4" autoplay="" loop="" muted="" playsinline="" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';" style="display: none;"></video>
+            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: block;">
         </div>
 
         <div class="nav-right-icon" onclick="openInfo()">
@@ -369,13 +368,13 @@
     </header>
 
     <section class="hero-banner" id="hero-section">
-        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.572);"></div>
         <div id="hero-text-1" class="hero-text-zone" style="font-size: 40px; top: 20%; left: 51.5%;" contenteditable="false"><br></div>
-        <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 86%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
-        <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(4.35) translate(0%, 2%);">
+        <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 90%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
+        <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(3.73) translate(0%, 3.5%);">
     </section>
 
-    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2);"></section>
+    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.314667); gap: 10px; padding: 10px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.91) translate(4.5%, 0%)" loading="lazy"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.44) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.55) translate(1%, 1%)" loading="lazy"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.2) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="shield.png" style="transform: scale(1.92) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(4.2) translate(1%, 8.5%)" loading="lazy"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.18) translate(-4.5%, 17.5%)" loading="lazy"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.55) translate(2%, 0%)" loading="lazy"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.38) translate(-13%, 0%)" loading="lazy"></div></section>
 
     <div id="project-modal" class="modal-container" style="display: none;">
         <button class="close-btn" onclick="closeProject()">×</button>
@@ -384,14 +383,38 @@
         <div class="modal-content-wrapper">
             <div class="image-slider-zone">
                 <button class="nav-arrow arrow-prev" onclick="moveSlider(-1)" style="display: none;">‹</button>
-                <div class="slider-track" id="slider-track"></div>
+                <div class="slider-track" id="slider-track"><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="illusion_clay.png" class="comp-img-right" loading="lazy">
+                            <img src="illusion_phone.png" class="comp-img-left" id="comp-left-0" style="clip-path: inset(0 50% 0 0);" loading="lazy">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '0')">
+                            <div class="comp-line" id="comp-line-0">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('illusion_phone.png', 'comparison', 'illusion_clay.png')">⛶</button>
+                        </div>
+                    </div><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="illusion_wire.png" class="comp-img-right" loading="lazy">
+                            <img src="illusion_wire2.png" class="comp-img-left" id="comp-left-1" style="clip-path: inset(0 50% 0 0);" loading="lazy">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '1')">
+                            <div class="comp-line" id="comp-line-1">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('illusion_wire2.png', 'comparison', 'illusion_wire.png')">⛶</button>
+                        </div>
+                    </div></div>
                 <button class="nav-arrow arrow-next" onclick="moveSlider(1)" style="display: none;">›</button>
             </div>
             
             <div class="info-fixed-zone" id="project-info-zone" onscroll="handleModalScroll(this, 'project-scroll-ind')">
-                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false"></h2>
-                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false"></p>
-                <div id="modal-logos" class="slide-logos"></div>
+                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false">WAKE UP !</h2>
+                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false">Idée de composition inspiré de références trouver sur Pinterest.<br><br><br>Réalisé entièrement sur Blender<br>Retouché sur Photoshop<br></p>
+                <div id="modal-logos" class="slide-logos"><img src="blender.png" onclick="removeLogo('blender.png')"><img src="photoshop.png" onclick="removeLogo('photoshop.png')"></div>
                 <div class="edit-controls-inline">
                     <button onclick="addImageToProject()">+ Image Simple</button>
                     <button onclick="addComparisonToProject()" style="background: #eccc68;">+ Comparaison</button>
@@ -423,7 +446,7 @@
 
     <div id="editor-toolbar" style="display: none;">
         <button id="btn-toggle-edit" style="background:#ff4757;">Mode Édition</button>
-        <button id="btn-edit-grid" style="background: #3498db; display: none;">Éditer Espacements</button>
+        <button id="btn-edit-grid" style="background: rgb(52, 152, 219); display: none;">Éditer Espacements</button>
         <button id="btn-save-code" style="background: rgb(46, 213, 115); display: none;">Copier Code Final</button>
     </div>
 
@@ -678,14 +701,14 @@
         let heroSrcMobile = "canari_banniere_03.gif";
         
         let heroStyle = "scale(5) translate(-3.5%, 23%)";
-        let heroStyleMobile = "scale(5) translate(-4.5%, 10%)";
+        let heroStyleMobile = "scale(3.73) translate(0%, 3.5%)";
         let heroText1Content = "\n";
         let heroText2Content = "DEFILEZ POUR VOIR LES TRAVAUX";
         let heroText1Style = {"desktop":{"size":60,"top":50,"left":50},"mobile":{"size":40,"top":20,"left":51.5}};
         let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":90,"left":50}};
         
         let gridConfig = {"desktop":{"gap":66,"padding":220},"mobile":{"gap":10,"padding":10}};
-    </script>
+            </script>
 
     <script>
         let isEditing = false;
@@ -1223,5 +1246,6 @@
         });
 
     </script>
-</body>
-</html>
+
+
+</body></html>
