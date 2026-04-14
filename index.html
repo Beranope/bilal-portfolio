@@ -1,4 +1,5 @@
-<html lang="fr"><head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bilal Berrane - Portfolio</title>
@@ -137,7 +138,7 @@
         }
         .slider-track::-webkit-scrollbar { display: none; }
 
-        /* STYLE IMAGE UNIVERSEL HARMONISÉ (ROBUSTE) */
+        /* STYLE IMAGE UNIVERSEL HARMONISÉ */
         .slide-img {
             min-width: 100%; flex: 0 0 100%; height: 100%; scroll-snap-align: start; padding: 20px; box-sizing: border-box;
             display: flex; justify-content: center; align-items: center; position: relative;
@@ -146,7 +147,7 @@
         
         .slide-img > img { 
             max-width: 100%; 
-            max-height: calc(100vh - 120px); /* L'image s'adapte à la hauteur du PC sans déborder */
+            max-height: calc(100vh - 120px); 
             width: auto; 
             height: auto; 
             object-fit: contain; 
@@ -174,14 +175,14 @@
         .download-btn:hover { transform: scale(1.05); background-color: #333; }
 
         /* =========================================
-           MODULE DE COMPARAISON D'IMAGES UNIVERSEL HARMONISÉ (SANS BUG 0 PX)
+           MODULE DE COMPARAISON D'IMAGES UNIVERSEL HARMONISÉ
         ========================================= */
         .comp-container {
             position: relative; 
-            display: inline-block; /* Forme de bloc la plus stable qui enroule son contenu sans s'écraser */
+            display: inline-block; /* Aligne le conteneur sur l'image */
             max-width: 100%; 
             margin: 0 auto; 
-            line-height: 0; /* Aligne parfaitement les bords */
+            line-height: 0; 
             vertical-align: middle;
             overflow: hidden; 
         }
@@ -192,6 +193,7 @@
             max-height: calc(100vh - 120px); 
             width: auto; 
             height: auto; 
+            object-fit: contain; /* Sécurité maximale */
         }
         
         .comp-img-left {
@@ -200,7 +202,7 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Se moule exactement sur l'image de droite */
+            object-fit: contain; /* Changé de "cover" à "contain" pour épouser 100% l'image droite */
             pointer-events: none;
         }
         
@@ -308,1262 +310,10 @@
             .slider-track { height: 100%; align-items: center; overflow-y: hidden; }
             
             .slide-img { 
-                min-width: 100%; flex: 0 0 100%; height: 100%; padding: 10px; overflow: hidden; /* Padding mobile ajusté */
+                min-width: 100%; flex: 0 0 100%; height: 100%; padding: 10px; overflow: hidden;
                 display: flex; justify-content: center; align-items: center; position: relative;
             }
             
-            /* Sur mobile, on adapte la taille maximale aux 50vh */
-            .slide-img > img { 
-                max-width: 100%; height: auto; max-height: calc(50vh - 20px); display: block; margin: 0 auto;
-            }
-            
-            .comp-img-right { max-height: calc(50vh - 20px); }
-            
-            .info-fixed-zone { 
-                width: 100%; flex-grow: 1; height: 50vh; padding: 20px 20px 60px 20px; 
-                border-left: none; border-top: none; justify-content: flex-start; text-align: center; 
-                overflow-y: auto; display: block;
-            }
-
-            .info-fixed-zone h2 { font-size: 22px; padding-top: 0; }
-            .info-fixed-zone p { font-size: 14px; }
-            
-            .slide-logos { justify-content: center; }
-            .edit-controls-inline { flex-direction: row; justify-content: center; }
-            
-            .btn-fullscreen-wrapper { position: absolute; bottom: 20px; right: 20px; margin-top: 0; display: block; }
-
-            .scroll-indicator {
-                display: none; 
-                position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
-                width: 40px; height: 40px; justify-content: center; align-items: center;
-                background: rgba(255, 255, 255, 0.95); border-radius: 50%;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2500; pointer-events: none;
-                animation: bounce 1.5s infinite; transition: opacity 0.3s;
-            }
-            .scroll-indicator svg { width: 24px; height: 24px; fill: #000; }
-            
-            @keyframes bounce {
-                0%, 100% { transform: translateX(-50%) translateY(0); }
-                50% { transform: translateX(-50%) translateY(8px); }
-            }
-        }
-    </style>
-</head>
-<body style="overflow: auto;" class="modal-open">
-
-    <header>
-        <a href="mailto:ber.bilal@outlook.fr" class="nav-left-icon">
-            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-        </a>
-        
-        <div class="logo-center" id="secret-logo-btn">
-            <video src="logo.mp4" autoplay="" loop="" muted="" playsinline="" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';" style="display: none;"></video>
-            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: block;">
-        </div>
-
-        <div class="nav-right-icon" onclick="openInfo()">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
-        </div>
-    </header>
-
-    <section class="hero-banner" id="hero-section">
-        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.9);"></div>
-        <div id="hero-text-1" class="hero-text-zone" style="font-size: 60px; top: 50%; left: 50%;" contenteditable="false"><br></div>
-        <div id="hero-text-2" class="hero-text-zone" style="font-size: 20px; top: 76%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
-        <img src="canari_banniere_02.gif" id="hero-img" style="transform: scale(5) translate(-3.5%, 23%);">
-    </section>
-
-    <section class="portfolio-grid" id="main-grid" style="filter: brightness(1); gap: 66px; padding: 220px 50px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.96) translate(3.5%, 2%)" loading="lazy"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.39) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.63) translate(1.5%, 1.5%)" loading="lazy"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.19) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="shield.png" style="transform: scale(2.3) translate(-10%, 0%)" loading="lazy"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(3.21) translate(0%, 5.5%)" loading="lazy"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.14) translate(-1.5%, 17%)" loading="lazy"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.59) translate(1.5%, 4.5%)" loading="lazy"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.53) translate(-13%, 1%)" loading="lazy"></div></section>
-
-    <div id="project-modal" class="modal-container active" style="display: block;">
-        <button class="close-btn" onclick="closeProject()">×</button>
-        <div class="scroll-indicator" id="project-scroll-ind" style="display: none; opacity: 0;"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></div>
-        
-        <div class="modal-content-wrapper">
-            <div class="image-slider-zone">
-                <button class="nav-arrow arrow-prev" onclick="moveSlider(-1)" style="display: flex;">‹</button>
-                <div class="slider-track" id="slider-track"><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="illusion_clay.png" class="comp-img-right" loading="lazy">
-                            <img src="illusion_phone.png" class="comp-img-left" id="comp-left-0" style="clip-path: inset(0 50% 0 0);" loading="lazy">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '0')">
-                            <div class="comp-line" id="comp-line-0">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('illusion_phone.png', 'comparison', 'illusion_clay.png')">⛶</button>
-                        </div>
-                    </div><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="illusion_wire.png" class="comp-img-right" loading="lazy">
-                            <img src="illusion_wire2.png" class="comp-img-left" id="comp-left-1" style="clip-path: inset(0px 100% 0px 0px);" loading="lazy">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '1')">
-                            <div class="comp-line" id="comp-line-1" style="left: 0%;">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('illusion_wire2.png', 'comparison', 'illusion_wire.png')">⛶</button>
-                        </div>
-                    </div></div>
-                <button class="nav-arrow arrow-next" onclick="moveSlider(1)" style="display: none;">›</button>
-            </div>
-            
-            <div class="info-fixed-zone" id="project-info-zone" onscroll="handleModalScroll(this, 'project-scroll-ind')">
-                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false">WAKE UP !</h2>
-                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false">Idée de composition inspiré de références trouver sur Pinterest.<br><br><br>Réalisé entièrement sur Blender<br>Retouché sur Photoshop<br></p>
-                <div id="modal-logos" class="slide-logos"><img src="blender.png" onclick="removeLogo('blender.png')"><img src="photoshop.png" onclick="removeLogo('photoshop.png')"></div>
-                <div class="edit-controls-inline">
-                    <button onclick="addImageToProject()">+ Image Simple</button>
-                    <button onclick="addComparisonToProject()" style="background: #eccc68;">+ Comparaison</button>
-                    <button onclick="addLogoToProject()">+ Logo</button>
-                    <button style="color:red;" onclick="deleteCurrentImage()">Supprimer Élément Actuel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="info-modal" class="modal-container" style="display: none;">
-        <button class="close-btn" onclick="closeInfo()">×</button>
-        
-        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #f9f9f9; padding-top: 60px; box-sizing: border-box;">
-            <div style="flex-grow: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; width: 100%; position: relative; padding: 20px; box-sizing: border-box;">
-                <img id="info-img" src="cv.png" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; transform: scale(1) translate(0%, 0%);">
-            </div>
-            
-            <div style="height: 100px; display: flex; justify-content: center; align-items: flex-start; flex-shrink: 0;">
-                <a id="download-cv-btn" href="cv.png" download="cv.png" class="download-btn">TÉLÉCHARGER</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="fullscreen-overlay" style="display: none;">
-        <button class="close-fs" onclick="closeFullscreen()">×</button>
-        <div id="fs-container"></div>
-    </div>
-
-    <div id="editor-toolbar" style="display: none;">
-        <button id="btn-toggle-edit" style="background:#ff4757;">Mode Édition</button>
-        <button id="btn-edit-grid" style="background: rgb(52, 152, 219); display: none;">Éditer Espacements</button>
-        <button id="btn-save-code" style="background: rgb(46, 213, 115); display: none;">Copier Code Final</button>
-    </div>
-
-    <div id="element-controls" style="display: none; position: fixed; top: 20px; right: 20px; width: 260px; background: white; padding: 20px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 25px; z-index: 10000;">
-        <div id="edit-indicator" style="font-size:12px; font-weight:bold; color:#ff4757; text-align:center; margin-bottom:15px;">ÉDITION : MOBILE</div>
-        
-        <div id="ctrl-group-img" style="display: block;">
-            <h4 style="font-size:10px; margin:0 0 5px 0;">URL IMAGE</h4>
-            <textarea id="ctrl-val" style="width:100%; height:40px;"></textarea>
-            <label style="font-size:10px;">Zoom</label>
-            <input type="range" id="ctrl-scale" min="0.1" max="5" step="0.01" style="width:100%;">
-            <label style="font-size:10px;">Position X / Y</label>
-            <input type="range" id="ctrl-x" min="-200" max="200" step="0.5" style="width:100%;">
-            <input type="range" id="ctrl-y" min="-200" max="200" step="0.5" style="width:100%;">
-        </div>
-
-        <div id="ctrl-group-txt" style="display: none;">
-            <label style="font-size:10px;">Taille du texte (px)</label>
-            <input type="range" id="ctrl-font" min="10" max="200" step="1" style="width:100%;">
-            <label style="font-size:10px;">Position Verticale (Top %)</label>
-            <input type="range" id="ctrl-top" min="0" max="100" step="0.5" style="width:100%;">
-            <label style="font-size:10px;">Position Horizontale (Left %)</label>
-            <input type="range" id="ctrl-left" min="0" max="100" step="0.5" style="width:100%;">
-        </div>
-
-        <div id="ctrl-group-grid" style="display: none;">
-            <label style="font-size:10px;">Espacement entre les projets (Gap px)</label>
-            <input type="range" id="ctrl-grid-gap" min="0" max="100" step="1" style="width:100%;">
-            <label style="font-size:10px;">Espace au-dessus/en-dessous (Padding px)</label>
-            <input type="range" id="ctrl-grid-padding" min="0" max="300" step="1" style="width:100%;">
-        </div>
-
-        <button onclick="document.getElementById('element-controls').style.display='none'" style="width:100%; margin-top:15px; padding:8px; border:none; background:#eee; cursor:pointer;">Fermer ce panneau</button>
-    </div>
-
-    <script id="data-script">
-        let projectsData = {
-    "p1": {
-        "title": "WAKE UP !",
-        "description": "Idée de composition inspiré de références trouver sur Pinterest.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n",
-        "images": [
-            {
-                "type": "comparison",
-                "left": "illusion_phone.png",
-                "right": "illusion_clay.png"
-            },
-            {
-                "type": "comparison",
-                "left": "illusion_wire2.png",
-                "right": "illusion_wire.png"
-            }
-        ],
-        "logos": [
-            "blender.png",
-            "photoshop.png"
-        ],
-        "gridImg": "illusion_phone.png",
-        "gridStyle": "scale(1.96) translate(3.5%, 2%)",
-        "gridStyleMobile": "scale(1.91) translate(4.5%, 0%)"
-    },
-    "p1776008400790": {
-        "title": "NATURE MORTE",
-        "description": "Comme toute nature morte, j'ai réunis différents objets avec différentes textures et formes, le but était d'essayé d'obtenir une composition harmonieuse avec des couleurs chaudes.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n\n\n",
-        "images": [
-            {
-                "type": "comparison",
-                "left": "nature_morte.png",
-                "right": "nature_clay.png"
-            }
-        ],
-        "logos": [
-            "blender.png",
-            "photoshop.png"
-        ],
-        "gridImg": "nature_morte.png",
-        "gridStyle": "scale(2.39) translate(0%, 0%)",
-        "gridStyleMobile": "scale(2.44) translate(0%, 0%)"
-    },
-    "p1776009011648": {
-        "title": "PARFUMS TROIS ÉDITIONS",
-        "description": "Projet personnel, j'ai voulu reproduire quelques flacons de parfums qui était en ma possession pour faire ce rendu \"publicités\".\n\nLe placements des lights et le compositing on était sur quoi le travail à été le plus dirigé. Un projet qui m'a beaucoup sur l'importance d'une bonne lumière.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n",
-        "images": [
-            {
-                "type": "comparison",
-                "left": "perfum3.png",
-                "right": "perfum3_noliquid.png"
-            },
-            {
-                "type": "comparison",
-                "left": "perfum1.png",
-                "right": "perfum1_noliquid.png"
-            },
-            {
-                "type": "comparison",
-                "left": "perfum2.png",
-                "right": "perfum2_noliquid.png"
-            },
-            {
-                "type": "comparison",
-                "left": "perfum3_clay.png",
-                "right": "perfum3_wire.png"
-            },
-            {
-                "type": "comparison",
-                "left": "perfum1_clay.png",
-                "right": "perfum1_wire.png"
-            },
-            {
-                "type": "comparison",
-                "left": "perfum2_clay.png",
-                "right": "perfum2_wire.png"
-            }
-        ],
-        "logos": [
-            "blender.png",
-            "photoshop.png"
-        ],
-        "gridImg": "canari_turn_02.gif",
-        "gridStyle": "scale(2.63) translate(1.5%, 1.5%)",
-        "gridStyleMobile": "scale(2.55) translate(1%, 1%)"
-    },
-    "p1776010863745": {
-        "title": "SCÈNE D'INTÉRIEUR",
-        "description": "\nDans le cadre de ma formation, j'ai réalisé cette composition d'intérieur.\n\nJ'ai beaucoup appris à travers ce projet, notamment sur la méthodologie et les règles de composition.\n\n\nRéalisé entièrement sur Blender\nRetouche Compo sur Photoshop\n\n\n",
-        "images": [
-            "interieur1.png",
-            {
-                "type": "comparison",
-                "left": "interieur_clay1.png",
-                "right": "interieur_clay1_wire.png"
-            },
-            "interieur2.png",
-            {
-                "type": "comparison",
-                "left": "interieur_clay2.png",
-                "right": "interieur_clay2_wire.png"
-            }
-        ],
-        "logos": [
-            "blender.png",
-            "photoshop.png"
-        ],
-        "gridImg": "interieursplit.png",
-        "gridStyle": "scale(1.19) translate(0%, 0%)",
-        "gridStyleMobile": "scale(1.2) translate(0%, 0%)"
-    },
-    "p1776015279303": {
-        "title": "BOUCLIER DE GUERRE",
-        "description": "Premier exercice de texturing sur le logiciel avec ce modèle 3D de bouclier.\n\nJ'ai beaucoup appris sur les masque, génerateurs et differents outils de painting.\n\n\nTexturing et Baking sur Substance Painter\nRendu sur Marmoset Toolbag",
-        "images": [
-            {
-                "type": "comparison",
-                "left": "shield.png",
-                "right": "shield_notexture.png"
-            }
-        ],
-        "logos": [
-            "painter.png",
-            "marmoset.png"
-        ],
-        "gridImg": "shield.png",
-        "gridStyle": "scale(2.3) translate(-10%, 0%)",
-        "gridStyleMobile": "scale(1.92) translate(0%, 0%)"
-    },
-    "p1776015280348": {
-        "title": "THETIS LAKE MONSTER",
-        "description": "Mon interpretation en 3D de la créature légendaire éponyme.\n\nL'exercice m'a permis de mieux comprendre l'anatomie humaine à travers le blocking et la simplification des formes.\n\nJ'ai commencé par assembler plusieurs bloc avant de les deformes,\npuis réunir le plus d'elements pour donner une meilleur vision global de l'objectif recherché. \n\nEnfin affiner les volumes pour faire ressortir les differentes parties.\nOn termine par faire la retopologie du maillage, le baking de la normal map et enfin le rendu.\n\nModélisation/Sculpt sur ZBrush\nRetopo sur Blender\nBaking et Rendu sur Marmoset Toolbag",
-        "images": [
-            "thetis_front.png",
-            "thetis.png",
-            "thetis_side.png",
-            "thetis_back.png",
-            "thetis_sideback.png",
-            "thetis_close.png",
-            "thetis_wire1.png",
-            "thetis_wire2.png",
-            "thetis_wire3.png"
-        ],
-        "logos": [
-            "zbrush.png",
-            "blender.png",
-            "marmoset.png"
-        ],
-        "gridImg": "thetis.png",
-        "gridStyle": "scale(3.21) translate(0%, 5.5%)",
-        "gridStyleMobile": "scale(4.2) translate(1%, 8.5%)"
-    },
-    "p1776025960208": {
-        "title": "ROBOT VINTAGE",
-        "description": "Design de robot que j'ai réalisé comme projet personnel.\n\n\nModélisation sur Blender",
-        "images": [
-            "robot.png",
-            {
-                "type": "comparison",
-                "left": "robot_wire1.png",
-                "right": "robot_wire2.png"
-            }
-        ],
-        "logos": [
-            "blender.png"
-        ],
-        "gridImg": "robot.png",
-        "gridStyle": "scale(2.14) translate(-1.5%, 17%)",
-        "gridStyleMobile": "scale(2.18) translate(-4.5%, 17.5%)"
-    },
-    "p1776026697611": {
-        "title": "CLASSIC CHEST",
-        "description": "J'ai réalisé ce coffre très basique afin de me familiariser avec le logiciel et ses outils de base.\n\n\nModélisation/Sculpt sur ZBrush\nRetouche sur Photoshop",
-        "images": [
-            {
-                "type": "comparison",
-                "left": "chest.png",
-                "right": "chest_clay.png"
-            }
-        ],
-        "logos": [
-            "zbrush.png",
-            "photoshop.png"
-        ],
-        "gridImg": "chest.png",
-        "gridStyle": "scale(1.59) translate(1.5%, 4.5%)",
-        "gridStyleMobile": "scale(1.55) translate(2%, 0%)"
-    },
-    "p1776026893114": {
-        "title": "DINO-MECHA",
-        "description": "L'un de mes tout premier travail de modélisation en 3D. Je découvrais encore le logiciel. J'ai voulu réaliser ce jouet d'enfance que j'avais à porté de main.\n\n\nRéalisé entièrement sur Blender\n",
-        "images": [
-            "dino.png",
-            {
-                "type": "comparison",
-                "left": "dino_side.jpg",
-                "right": "dino_side_view.jpg"
-            }
-        ],
-        "logos": [
-            "blender.png"
-        ],
-        "gridImg": "dino.png",
-        "gridStyle": "scale(2.53) translate(-13%, 1%)",
-        "gridStyleMobile": "scale(2.38) translate(-13%, 0%)"
-    }
-};
-        let infoData = {
-    "title": "À PROPOS DE MOI",
-    "description": "Je suis un créatif passionné...\nVoici mon parcours.",
-    "img": "cv.png",
-    "imgStyle": "scale(1) translate(0%, 0%)",
-    "imgStyleMobile": "scale(1) translate(0%, 0%)"
-};
-        
-        let heroSrc = "canari_banniere_02.gif";
-        let heroSrcMobile = "canari_banniere_03.gif";
-        
-        let heroStyle = "scale(5) translate(-3.5%, 23%)";
-        let heroStyleMobile = "scale(3.73) translate(0%, 3.5%)";
-        let heroText1Content = "\n";
-        let heroText2Content = "DEFILEZ POUR VOIR LES TRAVAUX";
-        let heroText1Style = {"desktop":{"size":60,"top":50,"left":50},"mobile":{"size":40,"top":20,"left":51.5}};
-        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":90,"left":50}};
-        
-        let gridConfig = {"desktop":{"gap":66,"padding":220},"mobile":{"gap":10,"padding":10}};
-            </script>
-
-    <script>
-        let isEditing = false;
-        let currentProjectId = null;
-        let activeElementType = null;
-        let activeElement = null;
-
-        const isMobile = () => window.innerWidth <= 768;
-
-        function applyGridConfig() {
-            const isMob = isMobile();
-            const config = isMob ? gridConfig.mobile : gridConfig.desktop;
-            const grid = document.getElementById('main-grid');
-            grid.style.gap = config.gap + "px";
-            grid.style.padding = isMob ? `${config.padding}px 10px` : `${config.padding}px 50px`;
-        }
-
-        function initElements() {
-            const isMob = isMobile();
-            
-            document.getElementById('hero-img').src = isMob ? heroSrcMobile : heroSrc;
-            document.getElementById('hero-img').style.transform = isMob ? heroStyleMobile : heroStyle;
-            
-            const t1 = document.getElementById('hero-text-1');
-            const t2 = document.getElementById('hero-text-2');
-            t1.innerText = heroText1Content;
-            t2.innerText = heroText2Content;
-            let st1 = isMob ? heroText1Style.mobile : heroText1Style.desktop;
-            let st2 = isMob ? heroText2Style.mobile : heroText2Style.desktop;
-            t1.style.fontSize = st1.size + "px"; t1.style.top = st1.top + "%"; t1.style.left = st1.left + "%";
-            t2.style.fontSize = st2.size + "px"; t2.style.top = st2.top + "%"; t2.style.left = st2.left + "%";
-            
-            // Initialisation de la modale Info (CV)
-            document.getElementById('info-img').src = infoData.img;
-            document.getElementById('info-img').style.transform = isMob ? (infoData.imgStyleMobile || infoData.imgStyle) : infoData.imgStyle;
-            
-            // Mise à jour du bouton de téléchargement avec le nom du fichier
-            const dlBtn = document.getElementById('download-cv-btn');
-            if (dlBtn) {
-                dlBtn.href = infoData.img;
-                let fileName = infoData.img.split('/').pop() || 'Document.png';
-                dlBtn.download = fileName;
-            }
-
-            applyGridConfig();
-            renderGrid();
-        }
-
-        function renderGrid() {
-            const grid = document.getElementById('main-grid');
-            grid.innerHTML = '';
-            
-            Object.keys(projectsData).forEach(id => {
-                const p = projectsData[id];
-                const item = document.createElement('div');
-                item.className = 'grid-item';
-                const style = isMobile() ? (p.gridStyleMobile || p.gridStyle) : p.gridStyle;
-                // Ajout de loading="lazy" sur la grille pour charger plus vite le reste
-                item.innerHTML = `<img src="${p.gridImg}" style="transform: ${style}" loading="lazy">`;
-                
-                if (isEditing) {
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'delete-project-btn';
-                    deleteBtn.innerHTML = '×';
-                    deleteBtn.onclick = (e) => {
-                        e.stopPropagation(); 
-                        if (confirm("Attention : Es-tu sûr de vouloir supprimer définitivement ce projet ?")) {
-                            delete projectsData[id];
-                            document.getElementById('element-controls').style.display = 'none';
-                            renderGrid();
-                        }
-                    };
-                    item.appendChild(deleteBtn);
-                }
-
-                item.onclick = () => {
-                    if(isEditing) openEditor('img', item.querySelector('img'), id);
-                    else openProject(id);
-                };
-                grid.appendChild(item);
-            });
-
-            if(isEditing) {
-                const add = document.createElement('div');
-                add.className = 'grid-item'; 
-                add.style.border = "2px dashed #ccc";
-                add.innerHTML = "<div style='display:flex; justify-content:center; align-items:center; height:100%; color:#ccc; font-size:40px; cursor:pointer;'>+</div>";
-                add.onclick = () => {
-                    const nid = "p"+Date.now();
-                    projectsData[nid] = { 
-                        title:"Nouveau Projet", description:"...", images:[], logos:[], 
-                        gridImg:"https://via.placeholder.com/600", 
-                        gridStyle:"scale(1) translate(0%,0%)", gridStyleMobile:"scale(1) translate(0%,0%)" 
-                    };
-                    renderGrid();
-                };
-                grid.appendChild(add);
-            }
-        }
-
-        function updateArrowsVisibility() {
-            const track = document.getElementById('slider-track');
-            const prevBtn = document.querySelector('.arrow-prev');
-            const nextBtn = document.querySelector('.arrow-next');
-            if (!track || !prevBtn || !nextBtn) return;
-
-            if (track.scrollWidth <= track.clientWidth + 5) {
-                prevBtn.style.display = 'none'; nextBtn.style.display = 'none'; return;
-            }
-            prevBtn.style.display = (track.scrollLeft <= 5) ? 'none' : 'flex';
-            nextBtn.style.display = (track.scrollLeft + track.clientWidth >= track.scrollWidth - 5) ? 'none' : 'flex';
-        }
-
-        document.getElementById('slider-track').addEventListener('scroll', updateArrowsVisibility);
-        window.addEventListener('resize', updateArrowsVisibility);
-
-        function handleModalScroll(zone, indicatorId) {
-            if (!isMobile()) return;
-            const indicator = document.getElementById(indicatorId);
-            if (!indicator) return;
-            
-            if (zone.scrollHeight - zone.scrollTop <= zone.clientHeight + 10) {
-                indicator.style.opacity = '0';
-            } else {
-                indicator.style.opacity = '1';
-            }
-        }
-
-        function checkScrollIndicator(zoneId, indicatorId) {
-            const indicator = document.getElementById(indicatorId);
-            if (!indicator) return;
-
-            if (!isMobile()) {
-                indicator.style.display = 'none';
-                return;
-            }
-            
-            const zone = document.getElementById(zoneId);
-            if (!zone) return;
-            
-            setTimeout(() => {
-                if (zone.scrollHeight > zone.clientHeight + 5) {
-                    indicator.style.opacity = '1';
-                    indicator.style.display = 'flex';
-                } else {
-                    indicator.style.opacity = '0';
-                    indicator.style.display = 'none';
-                }
-            }, 150);
-        }
-
-        function openProject(id) {
-            document.body.classList.add('modal-open');
-            currentProjectId = id;
-            const p = projectsData[id];
-            document.getElementById('modal-title').innerText = p.title;
-            document.getElementById('modal-desc').innerText = p.description;
-
-            const track = document.getElementById('slider-track');
-            track.innerHTML = '';
-            
-            p.images.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'slide-img';
-
-                if (typeof item === 'string') {
-                    // Chargement fainéant (lazy) pour fluidifier la fenêtre
-                    div.innerHTML = `
-                        <img src="${item}" loading="lazy">
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('${item}', 'single')">⛶</button>
-                        </div>
-                    `;
-                } 
-                else if (item.type === 'comparison') {
-                    div.innerHTML = `
-                        <div class="comp-container">
-                            <img src="${item.right}" class="comp-img-right" loading="lazy">
-                            <img src="${item.left}" class="comp-img-left" id="comp-left-${index}" style="clip-path: inset(0 50% 0 0);" loading="lazy">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" 
-                                oninput="updateComparison(this, '${index}')">
-                            <div class="comp-line" id="comp-line-${index}">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('${item.left}', 'comparison', '${item.right}')">⛶</button>
-                        </div>
-                    `;
-                }
-                track.appendChild(div);
-            });
-
-            const logoCont = document.getElementById('modal-logos');
-            logoCont.innerHTML = p.logos.map(l => `<img src="${l}" onclick="removeLogo('${l}')">`).join('');
-
-            document.getElementById('project-modal').style.display = 'block';
-            track.scrollLeft = 0;
-            
-            document.getElementById('project-info-zone').scrollTop = 0;
-
-            setTimeout(() => { 
-                document.getElementById('project-modal').classList.add('active');
-                updateArrowsVisibility();
-                checkScrollIndicator('project-info-zone', 'project-scroll-ind');
-            }, 10);
-        }
-
-        function updateComparison(input, idSuffix) {
-            const val = input.value;
-            const leftImg = document.getElementById('comp-left-' + idSuffix);
-            const line = document.getElementById('comp-line-' + idSuffix);
-
-            if (leftImg) leftImg.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
-            if (line) line.style.left = `${val}%`;
-        }
-
-        function closeProject() {
-            document.getElementById('project-modal').classList.remove('active');
-            setTimeout(() => { 
-                document.getElementById('project-modal').style.display='none'; 
-                document.body.classList.remove('modal-open'); 
-            }, 400);
-            currentProjectId = null;
-        }
-
-        function openInfo() {
-            document.body.classList.add('modal-open');
-            document.getElementById('info-modal').style.display = 'block';
-            setTimeout(() => { 
-                document.getElementById('info-modal').classList.add('active');
-            }, 10);
-        }
-
-        function closeInfo() {
-            document.getElementById('info-modal').classList.remove('active');
-            setTimeout(() => { 
-                document.getElementById('info-modal').style.display='none'; 
-                document.body.classList.remove('modal-open'); 
-            }, 400);
-        }
-
-        function saveTextChange() {
-            if(!currentProjectId) return;
-            projectsData[currentProjectId].title = document.getElementById('modal-title').innerText;
-            projectsData[currentProjectId].description = document.getElementById('modal-desc').innerText;
-            checkScrollIndicator('project-info-zone', 'project-scroll-ind');
-        }
-
-        function moveSlider(dir) {
-            const track = document.getElementById('slider-track');
-            track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
-        }
-
-        function openFullscreen(url1, type = 'single', url2 = null) {
-            const overlay = document.getElementById('fullscreen-overlay');
-            const container = document.getElementById('fs-container');
-            container.innerHTML = '';
-
-            if (type === 'single') {
-                container.innerHTML = `<img src="${url1}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
-            } else if (type === 'comparison') {
-                container.innerHTML = `
-                    <div class="comp-container" style="max-height: 100vh;">
-                        <img src="${url2}" class="comp-img-right" style="max-height: 100vh; width: auto; height: auto;">
-                        <img src="${url1}" class="comp-img-left" id="comp-left-fs" style="clip-path: inset(0 50% 0 0);">
-                        <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, 'fs')">
-                        <div class="comp-line" id="comp-line-fs">
-                            <div class="comp-grip"></div>
-                        </div>
-                    </div>
-                `;
-            }
-            overlay.style.display = 'flex';
-        }
-        function closeFullscreen() { document.getElementById('fullscreen-overlay').style.display = 'none'; }
-
-        function addImageToProject() {
-            let url = prompt("URL Image Simple :");
-            if(url) { projectsData[currentProjectId].images.push(url); openProject(currentProjectId); }
-        }
-        function addComparisonToProject() {
-            let left = prompt("URL Image 1 (Gauche / Avant) :");
-            if(!left) return;
-            let right = prompt("URL Image 2 (Droite / Après) :");
-            if(right) {
-                projectsData[currentProjectId].images.push({ type: 'comparison', left: left, right: right });
-                openProject(currentProjectId);
-            }
-        }
-        function deleteCurrentImage() {
-            const track = document.getElementById('slider-track');
-            const index = Math.round(track.scrollLeft / track.offsetWidth);
-            if(confirm("Supprimer l'élément affiché (Image ou Comparaison) ?")) {
-                projectsData[currentProjectId].images.splice(index, 1);
-                openProject(currentProjectId);
-            }
-        }
-        function addLogoToProject() {
-            let l = prompt("URL logo :");
-            if(l) { projectsData[currentProjectId].logos.push(l); openProject(currentProjectId); }
-        }
-        function removeLogo(url) {
-            if(isEditing && confirm("Supprimer ce logo ?")) {
-                projectsData[currentProjectId].logos = projectsData[currentProjectId].logos.filter(x => x !== url);
-                openProject(currentProjectId);
-            }
-        }
-
-        document.getElementById('btn-edit-grid').onclick = function() {
-            openEditor('grid', document.getElementById('main-grid'));
-        };
-
-        function openEditor(type, element, projectId = null) {
-            if(!isEditing) return;
-            activeElementType = type; activeElement = element;
-            if (projectId) currentProjectId = projectId;
-            
-            const isMob = isMobile();
-            document.getElementById('edit-indicator').innerText = isMob ? "ÉDITION : MOBILE" : "ÉDITION : PC";
-            document.getElementById('element-controls').style.display = 'block';
-
-            document.getElementById('ctrl-group-img').style.display = 'none';
-            document.getElementById('ctrl-group-txt').style.display = 'none';
-            document.getElementById('ctrl-group-grid').style.display = 'none';
-
-            if (type === 'img') {
-                document.getElementById('ctrl-group-img').style.display = 'block';
-                
-                if (element.id === 'hero-img') document.getElementById('ctrl-val').value = isMob ? heroSrcMobile : heroSrc;
-                else if (element.id === 'info-img') document.getElementById('ctrl-val').value = infoData.img;
-                else if (projectId) document.getElementById('ctrl-val').value = projectsData[projectId].gridImg;
-                
-                let currentStyle = element.style.transform;
-                if(!currentStyle || currentStyle === 'none') {
-                    if(element.id === 'hero-img') currentStyle = isMob ? heroStyleMobile : heroStyle;
-                    else if (element.id === 'info-img') currentStyle = isMob ? (infoData.imgStyleMobile || infoData.imgStyle) : infoData.imgStyle;
-                    else if(projectId) currentStyle = isMob ? (projectsData[projectId].gridStyleMobile || projectsData[projectId].gridStyle) : projectsData[projectId].gridStyle;
-                }
-                if(!currentStyle || currentStyle === 'none') currentStyle = "scale(1) translate(0%, 0%)";
-                
-                let scaleMatch = /scale\(([^)]+)\)/.exec(currentStyle);
-                let translateMatch = /translate\(([^%]+)%\s*,\s*([^%]+)%\)/.exec(currentStyle);
-                
-                document.getElementById('ctrl-scale').value = scaleMatch ? scaleMatch[1] : 1;
-                document.getElementById('ctrl-x').value = translateMatch ? translateMatch[1] : 0;
-                document.getElementById('ctrl-y').value = translateMatch ? translateMatch[2] : 0;
-
-            } else if (type === 'text') {
-                document.getElementById('ctrl-group-txt').style.display = 'block';
-                
-                let st = null;
-                if(element.id === 'hero-text-1') st = isMob ? heroText1Style.mobile : heroText1Style.desktop;
-                if(element.id === 'hero-text-2') st = isMob ? heroText2Style.mobile : heroText2Style.desktop;
-                
-                if(st) {
-                    document.getElementById('ctrl-font').value = st.size;
-                    document.getElementById('ctrl-top').value = st.top;
-                    document.getElementById('ctrl-left').value = st.left;
-                }
-            } else if (type === 'grid') {
-                document.getElementById('ctrl-group-grid').style.display = 'block';
-                let config = isMob ? gridConfig.mobile : gridConfig.desktop;
-                document.getElementById('ctrl-grid-gap').value = config.gap;
-                document.getElementById('ctrl-grid-padding').value = config.padding;
-            }
-        }
-
-        function applyStyles() {
-            if(!activeElement) return;
-            const isMob = isMobile();
-
-            if (activeElementType === 'img') {
-                const s = document.getElementById('ctrl-scale').value;
-                const x = document.getElementById('ctrl-x').value;
-                const y = document.getElementById('ctrl-y').value;
-                const style = `scale(${s}) translate(${x}%, ${y}%)`;
-                activeElement.style.transform = style;
-                
-                if(activeElement.id === 'hero-img') {
-                    if(isMob) heroStyleMobile = style; else heroStyle = style;
-                } else if(activeElement.id === 'info-img') {
-                    if(isMob) infoData.imgStyleMobile = style; else infoData.imgStyle = style;
-                } else if(currentProjectId) {
-                    if(isMob) projectsData[currentProjectId].gridStyleMobile = style; else projectsData[currentProjectId].gridStyle = style;
-                }
-            } else if (activeElementType === 'text') {
-                const size = parseInt(document.getElementById('ctrl-font').value);
-                const top = parseFloat(document.getElementById('ctrl-top').value);
-                const left = parseFloat(document.getElementById('ctrl-left').value);
-                
-                activeElement.style.fontSize = size + "px";
-                activeElement.style.top = top + "%";
-                activeElement.style.left = left + "%";
-                
-                let styleObj = { size: size, top: top, left: left };
-                if (activeElement.id === 'hero-text-1') {
-                    if(isMob) heroText1Style.mobile = styleObj; else heroText1Style.desktop = styleObj;
-                } else if (activeElement.id === 'hero-text-2') {
-                    if(isMob) heroText2Style.mobile = styleObj; else heroText2Style.desktop = styleObj;
-                }
-            } else if (activeElementType === 'grid') {
-                const gap = parseInt(document.getElementById('ctrl-grid-gap').value);
-                const padding = parseInt(document.getElementById('ctrl-grid-padding').value);
-                
-                activeElement.style.gap = gap + "px";
-                activeElement.style.padding = isMob ? `${padding}px 10px` : `${padding}px 50px`;
-                
-                if (isMob) {
-                    gridConfig.mobile = { gap: gap, padding: padding };
-                } else {
-                    gridConfig.desktop = { gap: gap, padding: padding };
-                }
-            }
-        }
-
-        document.getElementById('btn-toggle-edit').onclick = function() {
-            isEditing = !isEditing;
-            document.body.classList.toggle('editing');
-            this.innerText = isEditing ? "Quitter l'Édition" : "Mode Édition";
-            document.getElementById('btn-save-code').style.display = isEditing ? 'block' : 'none';
-            document.getElementById('btn-edit-grid').style.display = isEditing ? 'block' : 'none';
-            document.getElementById('element-controls').style.display = 'none';
-            
-            document.getElementById('hero-text-1').contentEditable = isEditing;
-            document.getElementById('hero-text-2').contentEditable = isEditing;
-            document.getElementById('modal-title').contentEditable = isEditing;
-            document.getElementById('modal-desc').contentEditable = isEditing;
-            
-            renderGrid(); 
-        };
-
-        document.getElementById('btn-save-code').onclick = function() {
-            const ds = document.getElementById('data-script');
-            ds.innerHTML = `
-        let projectsData = ${JSON.stringify(projectsData, null, 4)};
-        let infoData = ${JSON.stringify(infoData, null, 4)};
-        
-        let heroSrc = ${JSON.stringify(heroSrc)};
-        let heroSrcMobile = ${JSON.stringify(heroSrcMobile)};
-        
-        let heroStyle = ${JSON.stringify(heroStyle)};
-        let heroStyleMobile = ${JSON.stringify(heroStyleMobile)};
-        let heroText1Content = ${JSON.stringify(document.getElementById('hero-text-1').innerText)};
-        let heroText2Content = ${JSON.stringify(document.getElementById('hero-text-2').innerText)};
-        let heroText1Style = ${JSON.stringify(heroText1Style)};
-        let heroText2Style = ${JSON.stringify(heroText2Style)};
-        
-        let gridConfig = ${JSON.stringify(gridConfig)};
-            `;
-            
-            const wasEditing = isEditing;
-            if(wasEditing) {
-                document.getElementById('btn-toggle-edit').click();
-            }
-            
-            document.getElementById('editor-toolbar').style.display = 'none';
-            logoClickCount = 0; 
-            
-            navigator.clipboard.writeText(document.documentElement.outerHTML).then(() => {
-                alert("Code copié avec succès ! La barre d'édition est bien cachée par défaut dans le nouveau code.");
-            });
-        };
-
-        let logoClickCount = 0;
-        let logoClickTimer = null;
-
-        document.getElementById('secret-logo-btn').addEventListener('click', () => {
-            logoClickCount++;
-            clearTimeout(logoClickTimer);
-            
-            if (logoClickCount === 10) {
-                const toolbar = document.getElementById('editor-toolbar');
-                if (toolbar.style.display === 'none') {
-                    toolbar.style.display = 'flex'; 
-                } else {
-                    if (isEditing) {
-                        document.getElementById('btn-toggle-edit').click();
-                    }
-                    toolbar.style.display = 'none'; 
-                }
-                logoClickCount = 0; 
-            } else {
-                logoClickTimer = setTimeout(() => {
-                    logoClickCount = 0;
-                }, 2000);
-            }
-        });
-
-        ['ctrl-scale', 'ctrl-x', 'ctrl-y', 'ctrl-font', 'ctrl-top', 'ctrl-left', 'ctrl-grid-gap', 'ctrl-grid-padding'].forEach(id => {
-            document.getElementById(id).oninput = applyStyles;
-        });
-        
-        document.getElementById('ctrl-val').oninput = (e) => {
-            if(activeElementType === 'img' && activeElement) {
-                activeElement.src = e.target.value;
-                if(activeElement.id === 'hero-img') {
-                    if (isMobile()) {
-                        heroSrcMobile = e.target.value;
-                    } else {
-                        heroSrc = e.target.value;
-                    }
-                }
-                else if(activeElement.id === 'info-img') {
-                    infoData.img = e.target.value;
-                    const dlBtn = document.getElementById('download-cv-btn');
-                    if (dlBtn) {
-                        dlBtn.href = e.target.value;
-                        dlBtn.download = e.target.value.split('/').pop() || 'Document.png';
-                    }
-                }
-                else if(currentProjectId) projectsData[currentProjectId].gridImg = e.target.value;
-            }
-        };
-
-        document.getElementById('hero-img').onclick = function() { openEditor('img', this); };
-        document.getElementById('hero-text-1').onclick = function() { openEditor('text', this); };
-        document.getElementById('hero-text-2').onclick = function() { openEditor('text', this); };
-        
-        document.getElementById('info-img').onclick = function() { if (isEditing) openEditor('img', this); };
-
-        window.addEventListener('scroll', () => {
-            const op = 0.5 + (window.scrollY / 800);
-            document.querySelector('.banner-overlay').style.backgroundColor = `rgba(0,0,0,${Math.min(op, 0.9)})`;
-            const br = 0.2 + (window.scrollY / 500);
-            document.getElementById('main-grid').style.filter = `brightness(${Math.min(br, 1)})`;
-        });
-
-        window.onload = initElements;
-        window.addEventListener('resize', () => {
-            document.getElementById('element-controls').style.display = 'none';
-            initElements();
-            updateArrowsVisibility();
-            if (currentProjectId) checkScrollIndicator('project-info-zone', 'project-scroll-ind');
-        });
-
-    </script>
-
-
-
-</body></html><html lang="fr"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilal Berrane - Portfolio</title>
-    <style>
-        /* =========================================
-           1. STYLE GLOBAL
-        ========================================= */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-            overflow-x: hidden;
-        }
-
-        /* Bloque le scroll du fond quand une modale est ouverte */
-        body.modal-open {
-            overflow: hidden !important;
-        }
-
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 50px;
-            background-color: #ffffff;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            min-height: 80px;
-        }
-
-        .nav-left-icon, .nav-right-icon {
-            position: absolute;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .nav-left-icon { left: 50px; }
-        .nav-right-icon { right: 50px; }
-
-        .nav-left-icon:hover, .nav-right-icon:hover { transform: scale(1.1); }
-        .nav-left-icon svg, .nav-right-icon svg { width: 40px; height: 40px; fill: #000; }
-        
-        .logo-center { cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .logo-center img, .logo-center video { height: 140px; object-fit: contain; display: block; background: transparent;}
-
-        /* =========================================
-           2. BANNIÈRE & GRILLE
-        ========================================= */
-        .hero-banner {
-            width: 100%; height: 90vh; background-color: #000;
-            display: flex; justify-content: center; align-items: center;
-            position: relative; overflow: hidden;
-        }
-
-        .banner-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 1; pointer-events: none; 
-        }
-
-        .hero-banner img {
-            width: 100%; height: 100%; object-fit: contain; 
-            position: absolute; z-index: 0;
-        }
-        
-        body.editing #hero-img { cursor: pointer; }
-
-        .hero-text-zone {
-            position: absolute; color: #fff; z-index: 2; text-align: center;
-            text-transform: uppercase; font-weight: bold; transform: translate(-50%, -50%);
-            white-space: pre-wrap; cursor: default;
-        }
-
-        body.editing .hero-text-zone { border: 2px dashed rgba(255, 255, 255, 0.5); cursor: text; }
-        #hero-text-2 { font-weight: normal; }
-
-        .portfolio-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-            padding: 20px 50px; transition: 0.3s; filter: brightness(0.2);
-        }
-
-        .grid-item { aspect-ratio: 3/4; background: #000; overflow: hidden; cursor: pointer; position: relative; }
-        .grid-item img { width: 100%; height: 100%; object-fit: contain; }
-
-        .delete-project-btn {
-            position: absolute; top: 10px; right: 10px; background: #ff4757; color: #fff; border: none;
-            border-radius: 50%; width: 35px; height: 35px; font-size: 24px; font-weight: bold;
-            cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5); transition: 0.2s;
-        }
-        .delete-project-btn:hover { transform: scale(1.1); background: #ff0000; }
-
-        /* =========================================
-           3. MODALES (PROJETS & INFO)
-        ========================================= */
-        .modal-container {
-            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 2000; opacity: 0; transition: 0.4s; overflow: hidden;
-        }
-        .modal-container.active { opacity: 1; display: block; }
-
-        /* BOUTON FERMER GLOBAL */
-        .close-btn {
-            position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer;
-            z-index: 2100; border: none; background: none; color: #000; transition: 0.3s;
-        }
-        .close-btn:hover { transform: scale(1.1); }
-
-        .modal-content-wrapper { 
-            display: flex; 
-            flex-direction: row; 
-            width: 100%; 
-            height: 100%; 
-            background: #fff;
-        }
-
-        .image-slider-zone {
-            position: relative; 
-            width: 75%; 
-            height: 100%; 
-            background: #f9f9f9;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
-        }
-
-        .slider-track {
-            display: flex; width: 100%; height: 100%; align-items: center;
-            overflow-x: auto; overflow-y: hidden; 
-            scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-        .slider-track::-webkit-scrollbar { display: none; }
-
-        /* STYLE IMAGE UNIVERSEL HARMONISÉ (ROBUSTE) */
-        .slide-img {
-            min-width: 100%; flex: 0 0 100%; height: 100%; scroll-snap-align: start; padding: 20px; box-sizing: border-box;
-            display: flex; justify-content: center; align-items: center; position: relative;
-            overflow: hidden; 
-        }
-        
-        .slide-img > img { 
-            max-width: 100%; 
-            max-height: calc(100vh - 120px); /* L'image s'adapte à la hauteur du PC sans déborder */
-            width: auto; 
-            height: auto; 
-            object-fit: contain; 
-            display: block; 
-        }
-
-        .info-fixed-zone { 
-            width: 25%; height: 100%; padding: 40px; box-sizing: border-box; background: #fff; 
-            text-align: left; overflow-y: auto; display: flex; flex-direction: column; 
-            justify-content: center; border-left: 1px solid #eee; position: relative;
-        }
-
-        .info-fixed-zone h2 { font-size: 26px; text-transform: uppercase; margin: 0 0 15px 0; outline: none; padding-top: 20px;}
-        .info-fixed-zone p { font-size: 15px; margin: 0; line-height: 1.6; color: #333; outline: none; white-space: pre-wrap; }
-        
-        .slide-logos { display: flex; justify-content: flex-start; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
-        .slide-logos img { width: 35px; height: 35px; object-fit: contain; cursor: pointer; }
-
-        /* BOUTON TÉLÉCHARGER */
-        .download-btn {
-            display: inline-block; padding: 15px 35px; background-color: #000; color: #fff;
-            text-decoration: none; font-weight: bold; font-size: 16px; text-transform: uppercase;
-            border-radius: 50px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); letter-spacing: 1px;
-        }
-        .download-btn:hover { transform: scale(1.05); background-color: #333; }
-
-        /* =========================================
-           MODULE DE COMPARAISON D'IMAGES UNIVERSEL HARMONISÉ (SANS BUG 0 PX)
-        ========================================= */
-        .comp-container {
-            position: relative; 
-            display: inline-block; /* Forme de bloc la plus stable qui enroule son contenu sans s'écraser */
-            max-width: 100%; 
-            margin: 0 auto; 
-            line-height: 0; /* Aligne parfaitement les bords */
-            vertical-align: middle;
-            overflow: hidden; 
-        }
-        
-        .comp-img-right {
-            display: block; 
-            max-width: 100%; 
-            max-height: calc(100vh - 120px); 
-            width: auto; 
-            height: auto; 
-        }
-        
-        .comp-img-left {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; /* Se moule exactement sur l'image de droite */
-            pointer-events: none;
-        }
-        
-        .comp-input {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
-            z-index: 10; margin: 0; touch-action: pan-y;
-            -webkit-appearance: none; appearance: none; background: transparent; pointer-events: auto; cursor: ew-resize;
-        }
-        .comp-input::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none; width: 50px; height: 10000px;
-            pointer-events: auto; cursor: ew-resize;
-        }
-        .comp-input::-moz-range-thumb {
-            width: 50px; height: 10000px; pointer-events: auto; cursor: ew-resize; border: none; background: transparent;
-        }
-
-        .comp-line {
-            position: absolute; top: 0; bottom: 0; left: 50%; width: 8px;
-            background: #ffffff; z-index: 5; pointer-events: none;
-            transform: translateX(-50%); box-shadow: 0 0 8px rgba(0,0,0,0.5);
-            border-left: 1px solid rgba(0,0,0,0.1); border-right: 1px solid rgba(0,0,0,0.1);
-        }
-        .comp-grip {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 2px; height: 30px; background: rgba(0,0,0,0.25); border-radius: 2px;
-        }
-
-        /* =========================================
-           BOUTONS & FLÈCHES
-        ========================================= */
-        .btn-fullscreen-wrapper { position: absolute; bottom: 20px; right: 20px; z-index: 100; pointer-events: none; }
-        
-        .btn-fullscreen {
-            pointer-events: auto; background: rgba(255, 255, 255, 0.5); color: #000; border: none; 
-            width: 45px; height: 45px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; 
-            justify-content: center; font-size: 24px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .btn-fullscreen:hover { background: rgba(255, 255, 255, 0.9); transform: scale(1.05); }
-
-        .nav-arrow {
-            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.5);
-            border: none; color: #000; font-size: 30px; padding: 0; cursor: pointer; z-index: 50;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            width: 50px; height: 50px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .nav-arrow:hover { background: rgba(255, 255, 255, 0.9); transform: translateY(-50%) scale(1.05); }
-        .arrow-prev { left: 20px; display: none; }
-        .arrow-next { right: 20px; display: none; }
-
-        .scroll-indicator { display: none; }
-
-        /* =========================================
-           PLEIN ÉCRAN
-        ========================================= */
-        #fullscreen-overlay {
-            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
-            background: #000; z-index: 3000; justify-content: center; align-items: center;
-        }
-        #fs-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
-        .close-fs { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; background: none; border: none; z-index: 3100;}
-
-        /* Edition */
-        .edit-controls-inline { display: none; margin-top: 30px; gap: 10px; justify-content: flex-start; flex-direction: column; }
-        body.editing .edit-controls-inline { display: flex; }
-
-        #editor-toolbar {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: #222; color: #fff; padding: 10px 20px; border-radius: 50px; display: flex; gap: 15px; z-index: 9999;
-        }
-        #editor-toolbar button { padding: 8px 15px; cursor: pointer; border-radius: 20px; border: none; font-size: 12px; font-weight: bold; }
-
-        /* =========================================
-           MODIFICATIONS DESKTOP (PC)
-        ========================================= */
-        @media (min-width: 769px) {
-            .btn-fullscreen-wrapper { position: absolute; bottom: 20px; right: 20px; }
-        }
-
-        /* =========================================
-           RESPONSIVE (MOBILE)
-        ========================================= */
-        @media (max-width: 768px) {
-            header { padding: 10px 20px; min-height: 60px; }
-            .nav-left-icon { left: 20px; } .nav-right-icon { right: 20px; }
-            .logo-center img, .logo-center video { height: 85px; }
-            .portfolio-grid { grid-template-columns: 1fr; }
-            
-            .nav-arrow { width: 40px; height: 40px; font-size: 24px; }
-            .arrow-prev { left: 10px; }
-            .arrow-next { right: 10px; }
-            
-            .close-btn { 
-                top: 15px; right: 15px; font-size: 30px; width: 40px; height: 40px; 
-                background: rgba(255, 255, 255, 0.9); border-radius: 50%; 
-                display: flex; align-items: center; justify-content: center; 
-                box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2500;
-            }
-
-            .modal-content-wrapper { flex-direction: column; height: 100%; overflow: hidden; background: #fff;}
-            
-            .image-slider-zone { 
-                width: 100%; height: 50vh; flex-shrink: 0; display: block; background: #f9f9f9; 
-            } 
-            
-            .slider-track { height: 100%; align-items: center; overflow-y: hidden; }
-            
-            .slide-img { 
-                min-width: 100%; flex: 0 0 100%; height: 100%; padding: 10px; overflow: hidden; /* Padding mobile ajusté */
-                display: flex; justify-content: center; align-items: center; position: relative;
-            }
-            
-            /* Sur mobile, on adapte la taille maximale aux 50vh */
             .slide-img > img { 
                 max-width: 100%; height: auto; max-height: calc(50vh - 20px); display: block; margin: 0 auto;
             }
@@ -1609,8 +359,8 @@
         </a>
         
         <div class="logo-center" id="secret-logo-btn">
-            <video src="logo.mp4" autoplay="" loop="" muted="" playsinline="" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';" style="display: none;"></video>
-            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: block;">
+            <video src="logo.mp4" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"></video>
+            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: none;">
         </div>
 
         <div class="nav-right-icon" onclick="openInfo()">
@@ -1621,11 +371,11 @@
     <section class="hero-banner" id="hero-section">
         <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.572);"></div>
         <div id="hero-text-1" class="hero-text-zone" style="font-size: 40px; top: 20%; left: 51.5%;" contenteditable="false"><br></div>
-        <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 90%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
-        <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(3.73) translate(0%, 3.5%);">
+        <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 86%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
+        <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(4.35) translate(0%, 2%);">
     </section>
 
-    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.314667); gap: 10px; padding: 10px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.91) translate(4.5%, 0%)" loading="lazy"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.44) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.55) translate(1%, 1%)" loading="lazy"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.2) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="shield.png" style="transform: scale(1.92) translate(0%, 0%)" loading="lazy"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(4.2) translate(1%, 8.5%)" loading="lazy"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.18) translate(-4.5%, 17.5%)" loading="lazy"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.55) translate(2%, 0%)" loading="lazy"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.38) translate(-13%, 0%)" loading="lazy"></div></section>
+    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2);"></section>
 
     <div id="project-modal" class="modal-container" style="display: none;">
         <button class="close-btn" onclick="closeProject()">×</button>
@@ -1634,38 +384,14 @@
         <div class="modal-content-wrapper">
             <div class="image-slider-zone">
                 <button class="nav-arrow arrow-prev" onclick="moveSlider(-1)" style="display: none;">‹</button>
-                <div class="slider-track" id="slider-track"><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="illusion_clay.png" class="comp-img-right" loading="lazy">
-                            <img src="illusion_phone.png" class="comp-img-left" id="comp-left-0" style="clip-path: inset(0 50% 0 0);" loading="lazy">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '0')">
-                            <div class="comp-line" id="comp-line-0">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('illusion_phone.png', 'comparison', 'illusion_clay.png')">⛶</button>
-                        </div>
-                    </div><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="illusion_wire.png" class="comp-img-right" loading="lazy">
-                            <img src="illusion_wire2.png" class="comp-img-left" id="comp-left-1" style="clip-path: inset(0 50% 0 0);" loading="lazy">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '1')">
-                            <div class="comp-line" id="comp-line-1">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('illusion_wire2.png', 'comparison', 'illusion_wire.png')">⛶</button>
-                        </div>
-                    </div></div>
+                <div class="slider-track" id="slider-track"></div>
                 <button class="nav-arrow arrow-next" onclick="moveSlider(1)" style="display: none;">›</button>
             </div>
             
             <div class="info-fixed-zone" id="project-info-zone" onscroll="handleModalScroll(this, 'project-scroll-ind')">
-                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false">WAKE UP !</h2>
-                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false">Idée de composition inspiré de références trouver sur Pinterest.<br><br><br>Réalisé entièrement sur Blender<br>Retouché sur Photoshop<br></p>
-                <div id="modal-logos" class="slide-logos"><img src="blender.png" onclick="removeLogo('blender.png')"><img src="photoshop.png" onclick="removeLogo('photoshop.png')"></div>
+                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false"></h2>
+                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false"></p>
+                <div id="modal-logos" class="slide-logos"></div>
                 <div class="edit-controls-inline">
                     <button onclick="addImageToProject()">+ Image Simple</button>
                     <button onclick="addComparisonToProject()" style="background: #eccc68;">+ Comparaison</button>
@@ -1697,7 +423,7 @@
 
     <div id="editor-toolbar" style="display: none;">
         <button id="btn-toggle-edit" style="background:#ff4757;">Mode Édition</button>
-        <button id="btn-edit-grid" style="background: rgb(52, 152, 219); display: none;">Éditer Espacements</button>
+        <button id="btn-edit-grid" style="background: #3498db; display: none;">Éditer Espacements</button>
         <button id="btn-save-code" style="background: rgb(46, 213, 115); display: none;">Copier Code Final</button>
     </div>
 
@@ -1952,14 +678,14 @@
         let heroSrcMobile = "canari_banniere_03.gif";
         
         let heroStyle = "scale(5) translate(-3.5%, 23%)";
-        let heroStyleMobile = "scale(3.73) translate(0%, 3.5%)";
+        let heroStyleMobile = "scale(4.35) translate(0%, 2%)";
         let heroText1Content = "\n";
         let heroText2Content = "DEFILEZ POUR VOIR LES TRAVAUX";
         let heroText1Style = {"desktop":{"size":60,"top":50,"left":50},"mobile":{"size":40,"top":20,"left":51.5}};
-        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":90,"left":50}};
+        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":86,"left":50}};
         
         let gridConfig = {"desktop":{"gap":66,"padding":220},"mobile":{"gap":10,"padding":10}};
-            </script>
+    </script>
 
     <script>
         let isEditing = false;
@@ -2017,8 +743,7 @@
                 const item = document.createElement('div');
                 item.className = 'grid-item';
                 const style = isMobile() ? (p.gridStyleMobile || p.gridStyle) : p.gridStyle;
-                // Ajout de loading="lazy" sur la grille pour charger plus vite le reste
-                item.innerHTML = `<img src="${p.gridImg}" style="transform: ${style}" loading="lazy">`;
+                item.innerHTML = `<img src="${p.gridImg}" style="transform: ${style}">`;
                 
                 if (isEditing) {
                     const deleteBtn = document.createElement('button');
@@ -2126,19 +851,20 @@
                 div.className = 'slide-img';
 
                 if (typeof item === 'string') {
-                    // Chargement fainéant (lazy) pour fluidifier la fenêtre
+                    // Ajout du onload magique pour faire apparaitre la fleche quand l'image est prete
                     div.innerHTML = `
-                        <img src="${item}" loading="lazy">
+                        <img src="${item}" onload="updateArrowsVisibility()">
                         <div class="btn-fullscreen-wrapper">
                             <button class="btn-fullscreen" onclick="openFullscreen('${item}', 'single')">⛶</button>
                         </div>
                     `;
                 } 
                 else if (item.type === 'comparison') {
+                    // Ajout du onload sur l'image principale pour valider la fleche
                     div.innerHTML = `
                         <div class="comp-container">
-                            <img src="${item.right}" class="comp-img-right" loading="lazy">
-                            <img src="${item.left}" class="comp-img-left" id="comp-left-${index}" style="clip-path: inset(0 50% 0 0);" loading="lazy">
+                            <img src="${item.right}" class="comp-img-right" onload="updateArrowsVisibility()">
+                            <img src="${item.left}" class="comp-img-left" id="comp-left-${index}" style="clip-path: inset(0 50% 0 0);">
                             <input type="range" min="0" max="100" value="50" class="comp-input" 
                                 oninput="updateComparison(this, '${index}')">
                             <div class="comp-line" id="comp-line-${index}">
@@ -2497,6 +1223,5 @@
         });
 
     </script>
-
-
-</body></html>
+</body>
+</html>
