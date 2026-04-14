@@ -1,4 +1,5 @@
-<html lang="fr"><head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bilal Berrane - Portfolio</title>
@@ -131,22 +132,22 @@
 
         .slider-track {
             display: flex; width: 100%; height: 100%; align-items: center;
-            overflow-x: auto; overflow-y: hidden; /* VERROUILLAGE DU SCROLL VERTICAL ICI */
+            overflow-x: auto; overflow-y: hidden; 
             scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
         }
         .slider-track::-webkit-scrollbar { display: none; }
 
-        /* STYLE IMAGE UNIVERSEL HARMONISÉ (100% fixé, 0 débordement) */
+        /* STYLE IMAGE UNIVERSEL HARMONISÉ (ROBUSTE) */
         .slide-img {
             min-width: 100%; flex: 0 0 100%; height: 100%; scroll-snap-align: start; padding: 20px; box-sizing: border-box;
             display: flex; justify-content: center; align-items: center; position: relative;
-            overflow: hidden; /* EMPÊCHE LES IMAGES DE DÉBORDER SUR LES AUTRES SLIDES */
+            overflow: hidden; 
         }
-        /* Toutes les images respectent à la lettre les bords du slider */
+        
         .slide-img > img { 
             max-width: 100%; 
-            max-height: calc(100vh - 80px); /* L'image s'adapte à la hauteur sans déborder sur PC */
+            max-height: calc(100vh - 120px); /* L'image s'adapte à la hauteur du PC sans déborder */
             width: auto; 
             height: auto; 
             object-fit: contain; 
@@ -174,32 +175,33 @@
         .download-btn:hover { transform: scale(1.05); background-color: #333; }
 
         /* =========================================
-           MODULE DE COMPARAISON D'IMAGES UNIVERSEL HARMONISÉ
+           MODULE DE COMPARAISON D'IMAGES UNIVERSEL HARMONISÉ (SANS BUG 0 PX)
         ========================================= */
         .comp-container {
             position: relative; 
-            display: inline-block; 
+            display: inline-block; /* Forme de bloc la plus stable qui enroule son contenu sans s'écraser */
             max-width: 100%; 
-            max-height: 100%; 
             margin: 0 auto; 
-            line-height: 0; /* Empêche les zones vides sous l'image */
+            line-height: 0; /* Aligne parfaitement les bords */
+            vertical-align: middle;
+            overflow: hidden; 
         }
-        /* CORRECTION : L'image droite dicte la taille exacte et réelle du conteneur */
+        
         .comp-img-right {
             display: block; 
             max-width: 100%; 
-            max-height: calc(100vh - 80px); /* L'image s'adapte à la hauteur sans déborder sur PC */
+            max-height: calc(100vh - 120px); 
             width: auto; 
             height: auto; 
         }
-        /* L'image gauche se calque parfaitement sur la taille du conteneur (donc de l'image droite) */
+        
         .comp-img-left {
             position: absolute; 
             top: 0; 
             left: 0; 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; 
+            object-fit: cover; /* Se moule exactement sur l'image de droite */
             pointer-events: none;
         }
         
@@ -307,16 +309,16 @@
             .slider-track { height: 100%; align-items: center; overflow-y: hidden; }
             
             .slide-img { 
-                min-width: 100%; flex: 0 0 100%; height: 100%; padding: 0; overflow: hidden;
+                min-width: 100%; flex: 0 0 100%; height: 100%; padding: 10px; overflow: hidden; /* Padding mobile ajusté */
                 display: flex; justify-content: center; align-items: center; position: relative;
             }
             
-            /* Sur mobile, la hauteur max s'adapte à 50vh */
+            /* Sur mobile, on adapte la taille maximale aux 50vh */
             .slide-img > img { 
-                max-width: 100%; height: auto; max-height: 50vh; object-fit: contain; display: block; margin: 0 auto;
+                max-width: 100%; height: auto; max-height: calc(50vh - 20px); display: block; margin: 0 auto;
             }
             
-            .comp-img-right { max-height: 50vh; }
+            .comp-img-right { max-height: calc(50vh - 20px); }
             
             .info-fixed-zone { 
                 width: 100%; flex-grow: 1; height: 50vh; padding: 20px 20px 60px 20px; 
@@ -357,8 +359,8 @@
         </a>
         
         <div class="logo-center" id="secret-logo-btn">
-            <video src="logo.mp4" autoplay="" loop="" muted="" playsinline="" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';" style="display: none;"></video>
-            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: block;">
+            <video src="logo.mp4" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"></video>
+            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: none;">
         </div>
 
         <div class="nav-right-icon" onclick="openInfo()">
@@ -367,13 +369,13 @@
     </header>
 
     <section class="hero-banner" id="hero-section">
-        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.572);"></div>
+        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.5);"></div>
         <div id="hero-text-1" class="hero-text-zone" style="font-size: 40px; top: 20%; left: 51.5%;" contenteditable="false"><br></div>
         <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 86%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
         <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(4.35) translate(0%, 2%);">
     </section>
 
-    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.314667); gap: 10px; padding: 10px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.91) translate(4.5%, 0%)"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.44) translate(0%, 0%)"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.55) translate(1%, 1%)"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.2) translate(0%, 0%)"></div><div class="grid-item"><img src="shield.png" style="transform: scale(1.92) translate(0%, 0%)"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(4.2) translate(1%, 8.5%)"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.18) translate(-4.5%, 17.5%)"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.55) translate(2%, 0%)"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.38) translate(-13%, 0%)"></div></section>
+    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2);"></section>
 
     <div id="project-modal" class="modal-container" style="display: none;">
         <button class="close-btn" onclick="closeProject()">×</button>
@@ -382,86 +384,14 @@
         <div class="modal-content-wrapper">
             <div class="image-slider-zone">
                 <button class="nav-arrow arrow-prev" onclick="moveSlider(-1)" style="display: none;">‹</button>
-                <div class="slider-track" id="slider-track"><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="perfum3_noliquid.png" class="comp-img-right">
-                            <img src="perfum3.png" class="comp-img-left" id="comp-left-0" style="clip-path: inset(0 50% 0 0);">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '0')">
-                            <div class="comp-line" id="comp-line-0">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('perfum3.png', 'comparison', 'perfum3_noliquid.png')">⛶</button>
-                        </div>
-                    </div><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="perfum1_noliquid.png" class="comp-img-right">
-                            <img src="perfum1.png" class="comp-img-left" id="comp-left-1" style="clip-path: inset(0 50% 0 0);">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '1')">
-                            <div class="comp-line" id="comp-line-1">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('perfum1.png', 'comparison', 'perfum1_noliquid.png')">⛶</button>
-                        </div>
-                    </div><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="perfum2_noliquid.png" class="comp-img-right">
-                            <img src="perfum2.png" class="comp-img-left" id="comp-left-2" style="clip-path: inset(0 50% 0 0);">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '2')">
-                            <div class="comp-line" id="comp-line-2">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('perfum2.png', 'comparison', 'perfum2_noliquid.png')">⛶</button>
-                        </div>
-                    </div><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="perfum3_wire.png" class="comp-img-right">
-                            <img src="perfum3_clay.png" class="comp-img-left" id="comp-left-3" style="clip-path: inset(0 50% 0 0);">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '3')">
-                            <div class="comp-line" id="comp-line-3">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('perfum3_clay.png', 'comparison', 'perfum3_wire.png')">⛶</button>
-                        </div>
-                    </div><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="perfum1_wire.png" class="comp-img-right">
-                            <img src="perfum1_clay.png" class="comp-img-left" id="comp-left-4" style="clip-path: inset(0 50% 0 0);">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '4')">
-                            <div class="comp-line" id="comp-line-4">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('perfum1_clay.png', 'comparison', 'perfum1_wire.png')">⛶</button>
-                        </div>
-                    </div><div class="slide-img">
-                        <div class="comp-container">
-                            <img src="perfum2_wire.png" class="comp-img-right">
-                            <img src="perfum2_clay.png" class="comp-img-left" id="comp-left-5" style="clip-path: inset(0 50% 0 0);">
-                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '5')">
-                            <div class="comp-line" id="comp-line-5">
-                                <div class="comp-grip"></div>
-                            </div>
-                        </div>
-                        <div class="btn-fullscreen-wrapper">
-                            <button class="btn-fullscreen" onclick="openFullscreen('perfum2_clay.png', 'comparison', 'perfum2_wire.png')">⛶</button>
-                        </div>
-                    </div></div>
+                <div class="slider-track" id="slider-track"></div>
                 <button class="nav-arrow arrow-next" onclick="moveSlider(1)" style="display: none;">›</button>
             </div>
             
             <div class="info-fixed-zone" id="project-info-zone" onscroll="handleModalScroll(this, 'project-scroll-ind')">
-                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false">PARFUMS TROIS ÉDITIONS</h2>
-                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false">Projet personnel, j'ai voulu reproduire quelques flacons de parfums qui était en ma possession pour faire ce rendu "publicités".<br><br>Le placements des lights et le compositing on était sur quoi le travail à été le plus dirigé. Un projet qui m'a beaucoup sur l'importance d'une bonne lumière.<br><br><br>Réalisé entièrement sur Blender<br>Retouché sur Photoshop<br></p>
-                <div id="modal-logos" class="slide-logos"><img src="blender.png" onclick="removeLogo('blender.png')"><img src="photoshop.png" onclick="removeLogo('photoshop.png')"></div>
+                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false"></h2>
+                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false"></p>
+                <div id="modal-logos" class="slide-logos"></div>
                 <div class="edit-controls-inline">
                     <button onclick="addImageToProject()">+ Image Simple</button>
                     <button onclick="addComparisonToProject()" style="background: #eccc68;">+ Comparaison</button>
@@ -493,7 +423,7 @@
 
     <div id="editor-toolbar" style="display: none;">
         <button id="btn-toggle-edit" style="background:#ff4757;">Mode Édition</button>
-        <button id="btn-edit-grid" style="background: rgb(52, 152, 219); display: none;">Éditer Espacements</button>
+        <button id="btn-edit-grid" style="background: #3498db; display: none;">Éditer Espacements</button>
         <button id="btn-save-code" style="background: rgb(46, 213, 115); display: none;">Copier Code Final</button>
     </div>
 
@@ -744,19 +674,18 @@
     "imgStyleMobile": "scale(1) translate(0%, 0%)"
 };
         
-        // SAUVEGARDE DES BANNIÈRES SÉPARÉES
         let heroSrc = "canari_banniere_02.gif";
         let heroSrcMobile = "canari_banniere_03.gif";
         
         let heroStyle = "scale(5) translate(-3.5%, 23%)";
-        let heroStyleMobile = "scale(4.35) translate(0%, 2%)";
+        let heroStyleMobile = "scale(5) translate(-4.5%, 10%)";
         let heroText1Content = "\n";
         let heroText2Content = "DEFILEZ POUR VOIR LES TRAVAUX";
         let heroText1Style = {"desktop":{"size":60,"top":50,"left":50},"mobile":{"size":40,"top":20,"left":51.5}};
-        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":86,"left":50}};
+        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":90,"left":50}};
         
         let gridConfig = {"desktop":{"gap":66,"padding":220},"mobile":{"gap":10,"padding":10}};
-            </script>
+    </script>
 
     <script>
         let isEditing = false;
@@ -777,7 +706,6 @@
         function initElements() {
             const isMob = isMobile();
             
-            // LA BANNIERE S'ADAPTE AU MOBILE OU AU PC ICI
             document.getElementById('hero-img').src = isMob ? heroSrcMobile : heroSrc;
             document.getElementById('hero-img').style.transform = isMob ? heroStyleMobile : heroStyle;
             
@@ -815,7 +743,8 @@
                 const item = document.createElement('div');
                 item.className = 'grid-item';
                 const style = isMobile() ? (p.gridStyleMobile || p.gridStyle) : p.gridStyle;
-                item.innerHTML = `<img src="${p.gridImg}" style="transform: ${style}">`;
+                // Ajout de loading="lazy" sur la grille pour charger plus vite le reste
+                item.innerHTML = `<img src="${p.gridImg}" style="transform: ${style}" loading="lazy">`;
                 
                 if (isEditing) {
                     const deleteBtn = document.createElement('button');
@@ -923,8 +852,9 @@
                 div.className = 'slide-img';
 
                 if (typeof item === 'string') {
+                    // Chargement fainéant (lazy) pour fluidifier la fenêtre
                     div.innerHTML = `
-                        <img src="${item}">
+                        <img src="${item}" loading="lazy">
                         <div class="btn-fullscreen-wrapper">
                             <button class="btn-fullscreen" onclick="openFullscreen('${item}', 'single')">⛶</button>
                         </div>
@@ -933,8 +863,8 @@
                 else if (item.type === 'comparison') {
                     div.innerHTML = `
                         <div class="comp-container">
-                            <img src="${item.right}" class="comp-img-right">
-                            <img src="${item.left}" class="comp-img-left" id="comp-left-${index}" style="clip-path: inset(0 50% 0 0);">
+                            <img src="${item.right}" class="comp-img-right" loading="lazy">
+                            <img src="${item.left}" class="comp-img-left" id="comp-left-${index}" style="clip-path: inset(0 50% 0 0);" loading="lazy">
                             <input type="range" min="0" max="100" value="50" class="comp-input" 
                                 oninput="updateComparison(this, '${index}')">
                             <div class="comp-line" id="comp-line-${index}">
@@ -1085,7 +1015,6 @@
             if (type === 'img') {
                 document.getElementById('ctrl-group-img').style.display = 'block';
                 
-                // On affiche la bonne source dans l'éditeur (mobile ou pc)
                 if (element.id === 'hero-img') document.getElementById('ctrl-val').value = isMob ? heroSrcMobile : heroSrc;
                 else if (element.id === 'info-img') document.getElementById('ctrl-val').value = infoData.img;
                 else if (projectId) document.getElementById('ctrl-val').value = projectsData[projectId].gridImg;
@@ -1195,7 +1124,6 @@
         let projectsData = ${JSON.stringify(projectsData, null, 4)};
         let infoData = ${JSON.stringify(infoData, null, 4)};
         
-        // SAUVEGARDE DES BANNIÈRES SÉPARÉES
         let heroSrc = ${JSON.stringify(heroSrc)};
         let heroSrcMobile = ${JSON.stringify(heroSrcMobile)};
         
@@ -1247,7 +1175,6 @@
             }
         });
 
-        // Application en direct lors du mouvement des curseurs
         ['ctrl-scale', 'ctrl-x', 'ctrl-y', 'ctrl-font', 'ctrl-top', 'ctrl-left', 'ctrl-grid-gap', 'ctrl-grid-padding'].forEach(id => {
             document.getElementById(id).oninput = applyStyles;
         });
@@ -1256,7 +1183,6 @@
             if(activeElementType === 'img' && activeElement) {
                 activeElement.src = e.target.value;
                 if(activeElement.id === 'hero-img') {
-                    // On enregistre dans la bonne variable selon l'écran
                     if (isMobile()) {
                         heroSrcMobile = e.target.value;
                     } else {
@@ -1297,6 +1223,5 @@
         });
 
     </script>
-
-
-</body></html>
+</body>
+</html>
