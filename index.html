@@ -1,5 +1,4 @@
-<html lang="fr">
-<head>
+<html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bilal Berrane - Portfolio</title>
@@ -48,7 +47,9 @@
 
         .nav-left-icon:hover, .nav-right-icon:hover { transform: scale(1.1); }
         .nav-left-icon svg, .nav-right-icon svg { width: 40px; height: 40px; fill: #000; }
-        .logo-center img { height: 180px; object-fit: contain; display: block; cursor: pointer; }
+        
+        .logo-center { cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .logo-center img, .logo-center video { height: 140px; object-fit: contain; display: block; background: transparent;}
 
         /* =========================================
            2. BANNIÈRE & GRILLE
@@ -136,13 +137,21 @@
         }
         .slider-track::-webkit-scrollbar { display: none; }
 
-        /* STYLE IMAGE UNIVERSEL (S'adapte à l'écran, aucun débordement vertical) */
+        /* STYLE IMAGE UNIVERSEL HARMONISÉ (100% fixé, 0 débordement) */
         .slide-img {
             min-width: 100%; flex: 0 0 100%; height: 100%; scroll-snap-align: start; padding: 20px; box-sizing: border-box;
             display: flex; justify-content: center; align-items: center; position: relative;
-            overflow: hidden; /* VERROUILLAGE DU DÉBORDEMENT */
+            overflow: hidden; /* EMPÊCHE LES IMAGES DE DÉBORDER SUR LES AUTRES SLIDES */
         }
-        .slide-img > img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        /* Toutes les images respectent à la lettre les bords du slider */
+        .slide-img > img { 
+            max-width: 100%; 
+            max-height: calc(100vh - 80px); /* L'image s'adapte à la hauteur sans déborder sur PC */
+            width: auto; 
+            height: auto; 
+            object-fit: contain; 
+            display: block; 
+        }
 
         .info-fixed-zone { 
             width: 25%; height: 100%; padding: 40px; box-sizing: border-box; background: #fff; 
@@ -165,24 +174,39 @@
         .download-btn:hover { transform: scale(1.05); background-color: #333; }
 
         /* =========================================
-           MODULE DE COMPARAISON D'IMAGES UNIVERSEL
+           MODULE DE COMPARAISON D'IMAGES UNIVERSEL HARMONISÉ
         ========================================= */
         .comp-container {
-            position: relative; display: inline-flex; justify-content: center; align-items: center; 
-            margin: 0 auto; line-height: 0; max-width: 100%; max-height: 100%;
+            position: relative; 
+            display: inline-block; 
+            max-width: 100%; 
+            max-height: 100%; 
+            margin: 0 auto; 
+            line-height: 0; /* Empêche les zones vides sous l'image */
         }
-        /* CORRECTION ÉTIREMENT : object-fit: contain imposé aux deux images ! */
+        /* CORRECTION : L'image droite dicte la taille exacte et réelle du conteneur */
         .comp-img-right {
-            display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain;
+            display: block; 
+            max-width: 100%; 
+            max-height: calc(100vh - 80px); /* L'image s'adapte à la hauteur sans déborder sur PC */
+            width: auto; 
+            height: auto; 
         }
+        /* L'image gauche se calque parfaitement sur la taille du conteneur (donc de l'image droite) */
         .comp-img-left {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            pointer-events: none;
         }
         
         .comp-input {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
             z-index: 10; margin: 0; touch-action: pan-y;
-            -webkit-appearance: none; appearance: none; background: transparent; pointer-events: none; 
+            -webkit-appearance: none; appearance: none; background: transparent; pointer-events: auto; cursor: ew-resize;
         }
         .comp-input::-webkit-slider-thumb {
             -webkit-appearance: none; appearance: none; width: 50px; height: 10000px;
@@ -249,13 +273,9 @@
 
         /* =========================================
            MODIFICATIONS DESKTOP (PC)
-           On a retiré les règles destructrices qui cassaient les images et ajoutaient un scroll
         ========================================= */
         @media (min-width: 769px) {
-            /* On ne garde ici QUE ce qui est propre au PC sans dégrader les images */
-            .btn-fullscreen-wrapper {
-                position: absolute; bottom: 20px; right: 20px;
-            }
+            .btn-fullscreen-wrapper { position: absolute; bottom: 20px; right: 20px; }
         }
 
         /* =========================================
@@ -264,8 +284,8 @@
         @media (max-width: 768px) {
             header { padding: 10px 20px; min-height: 60px; }
             .nav-left-icon { left: 20px; } .nav-right-icon { right: 20px; }
-            .logo-center img { height: 85px; }
-            .portfolio-grid { grid-template-columns: 1fr; padding: 10px; }
+            .logo-center img, .logo-center video { height: 85px; }
+            .portfolio-grid { grid-template-columns: 1fr; }
             
             .nav-arrow { width: 40px; height: 40px; font-size: 24px; }
             .arrow-prev { left: 10px; }
@@ -281,25 +301,25 @@
             .modal-content-wrapper { flex-direction: column; height: 100%; overflow: hidden; background: #fff;}
             
             .image-slider-zone { 
-                width: 100%; height: auto; flex-shrink: 0; display: block; background: #f9f9f9; 
+                width: 100%; height: 50vh; flex-shrink: 0; display: block; background: #f9f9f9; 
             } 
             
-            .slider-track { height: auto; align-items: center; overflow-y: hidden; }
+            .slider-track { height: 100%; align-items: center; overflow-y: hidden; }
             
             .slide-img { 
-                min-width: 100%; flex: 0 0 100%; height: auto; padding: 0; overflow: hidden;
+                min-width: 100%; flex: 0 0 100%; height: 100%; padding: 0; overflow: hidden;
                 display: flex; justify-content: center; align-items: center; position: relative;
             }
             
+            /* Sur mobile, la hauteur max s'adapte à 50vh */
             .slide-img > img { 
-                width: auto; max-width: 100%; height: auto; max-height: 60vh; 
-                object-fit: contain; display: block; margin: 0 auto;
+                max-width: 100%; height: auto; max-height: 50vh; object-fit: contain; display: block; margin: 0 auto;
             }
             
-            .comp-img-right { max-height: 60vh; }
+            .comp-img-right { max-height: 50vh; }
             
             .info-fixed-zone { 
-                width: 100%; flex-grow: 1; height: 0; padding: 20px 20px 60px 20px; 
+                width: 100%; flex-grow: 1; height: 50vh; padding: 20px 20px 60px 20px; 
                 border-left: none; border-top: none; justify-content: flex-start; text-align: center; 
                 overflow-y: auto; display: block;
             }
@@ -335,20 +355,25 @@
         <a href="mailto:ber.bilal@outlook.fr" class="nav-left-icon">
             <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
         </a>
-        <div class="logo-center"><img src="Logo_Gif.gif" alt="Logo" id="secret-logo-btn"></div>
+        
+        <div class="logo-center" id="secret-logo-btn">
+            <video src="logo.mp4" autoplay="" loop="" muted="" playsinline="" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';" style="display: none;"></video>
+            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: block;">
+        </div>
+
         <div class="nav-right-icon" onclick="openInfo()">
             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
         </div>
     </header>
 
     <section class="hero-banner" id="hero-section">
-        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.9);"></div>
-        <div id="hero-text-1" class="hero-text-zone" style="font-size: 60px; top: 50%; left: 50%;" contenteditable="false"><br></div>
-        <div id="hero-text-2" class="hero-text-zone" style="font-size: 20px; top: 87.5%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
-        <img src="canari_banniere_02.gif" id="hero-img" style="transform: scale(5) translate(-3.5%, 23%);">
+        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+        <div id="hero-text-1" class="hero-text-zone" style="font-size: 40px; top: 20%; left: 51.5%;" contenteditable="false"><br></div>
+        <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 86%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
+        <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(4.35) translate(0%, 2%);">
     </section>
 
-    <section class="portfolio-grid" id="main-grid" style="filter: brightness(1);"></section>
+    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2); gap: 10px; padding: 10px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.91) translate(4.5%, 0%)"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.44) translate(0%, 0%)"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.55) translate(1%, 1%)"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.2) translate(0%, 0%)"></div><div class="grid-item"><img src="shield.png" style="transform: scale(1.92) translate(0%, 0%)"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(4.2) translate(1%, 8.5%)"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.18) translate(-4.5%, 17.5%)"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.55) translate(2%, 0%)"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.38) translate(-13%, 0%)"></div></section>
 
     <div id="project-modal" class="modal-container" style="display: none;">
         <button class="close-btn" onclick="closeProject()">×</button>
@@ -357,14 +382,86 @@
         <div class="modal-content-wrapper">
             <div class="image-slider-zone">
                 <button class="nav-arrow arrow-prev" onclick="moveSlider(-1)" style="display: none;">‹</button>
-                <div class="slider-track" id="slider-track"></div>
+                <div class="slider-track" id="slider-track"><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="perfum3_noliquid.png" class="comp-img-right">
+                            <img src="perfum3.png" class="comp-img-left" id="comp-left-0" style="clip-path: inset(0 50% 0 0);">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '0')">
+                            <div class="comp-line" id="comp-line-0">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('perfum3.png', 'comparison', 'perfum3_noliquid.png')">⛶</button>
+                        </div>
+                    </div><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="perfum1_noliquid.png" class="comp-img-right">
+                            <img src="perfum1.png" class="comp-img-left" id="comp-left-1" style="clip-path: inset(0 50% 0 0);">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '1')">
+                            <div class="comp-line" id="comp-line-1">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('perfum1.png', 'comparison', 'perfum1_noliquid.png')">⛶</button>
+                        </div>
+                    </div><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="perfum2_noliquid.png" class="comp-img-right">
+                            <img src="perfum2.png" class="comp-img-left" id="comp-left-2" style="clip-path: inset(0 50% 0 0);">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '2')">
+                            <div class="comp-line" id="comp-line-2">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('perfum2.png', 'comparison', 'perfum2_noliquid.png')">⛶</button>
+                        </div>
+                    </div><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="perfum3_wire.png" class="comp-img-right">
+                            <img src="perfum3_clay.png" class="comp-img-left" id="comp-left-3" style="clip-path: inset(0 50% 0 0);">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '3')">
+                            <div class="comp-line" id="comp-line-3">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('perfum3_clay.png', 'comparison', 'perfum3_wire.png')">⛶</button>
+                        </div>
+                    </div><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="perfum1_wire.png" class="comp-img-right">
+                            <img src="perfum1_clay.png" class="comp-img-left" id="comp-left-4" style="clip-path: inset(0 50% 0 0);">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '4')">
+                            <div class="comp-line" id="comp-line-4">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('perfum1_clay.png', 'comparison', 'perfum1_wire.png')">⛶</button>
+                        </div>
+                    </div><div class="slide-img">
+                        <div class="comp-container">
+                            <img src="perfum2_wire.png" class="comp-img-right">
+                            <img src="perfum2_clay.png" class="comp-img-left" id="comp-left-5" style="clip-path: inset(0 50% 0 0);">
+                            <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, '5')">
+                            <div class="comp-line" id="comp-line-5">
+                                <div class="comp-grip"></div>
+                            </div>
+                        </div>
+                        <div class="btn-fullscreen-wrapper">
+                            <button class="btn-fullscreen" onclick="openFullscreen('perfum2_clay.png', 'comparison', 'perfum2_wire.png')">⛶</button>
+                        </div>
+                    </div></div>
                 <button class="nav-arrow arrow-next" onclick="moveSlider(1)" style="display: none;">›</button>
             </div>
             
             <div class="info-fixed-zone" id="project-info-zone" onscroll="handleModalScroll(this, 'project-scroll-ind')">
-                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false"></h2>
-                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false"></p>
-                <div id="modal-logos" class="slide-logos"></div>
+                <h2 id="modal-title" oninput="saveTextChange()" contenteditable="false">PARFUMS TROIS ÉDITIONS</h2>
+                <p id="modal-desc" oninput="saveTextChange()" contenteditable="false">Projet personnel, j'ai voulu reproduire quelques flacons de parfums qui était en ma possession pour faire ce rendu "publicités".<br><br>Le placements des lights et le compositing on était sur quoi le travail à été le plus dirigé. Un projet qui m'a beaucoup sur l'importance d'une bonne lumière.<br><br><br>Réalisé entièrement sur Blender<br>Retouché sur Photoshop<br></p>
+                <div id="modal-logos" class="slide-logos"><img src="blender.png" onclick="removeLogo('blender.png')"><img src="photoshop.png" onclick="removeLogo('photoshop.png')"></div>
                 <div class="edit-controls-inline">
                     <button onclick="addImageToProject()">+ Image Simple</button>
                     <button onclick="addComparisonToProject()" style="background: #eccc68;">+ Comparaison</button>
@@ -396,6 +493,7 @@
 
     <div id="editor-toolbar" style="display: none;">
         <button id="btn-toggle-edit" style="background:#ff4757;">Mode Édition</button>
+        <button id="btn-edit-grid" style="background: rgb(52, 152, 219); display: none;">Éditer Espacements</button>
         <button id="btn-save-code" style="background: rgb(46, 213, 115); display: none;">Copier Code Final</button>
     </div>
 
@@ -421,6 +519,13 @@
             <input type="range" id="ctrl-left" min="0" max="100" step="0.5" style="width:100%;">
         </div>
 
+        <div id="ctrl-group-grid" style="display: none;">
+            <label style="font-size:10px;">Espacement entre les projets (Gap px)</label>
+            <input type="range" id="ctrl-grid-gap" min="0" max="100" step="1" style="width:100%;">
+            <label style="font-size:10px;">Espace au-dessus/en-dessous (Padding px)</label>
+            <input type="range" id="ctrl-grid-padding" min="0" max="300" step="1" style="width:100%;">
+        </div>
+
         <button onclick="document.getElementById('element-controls').style.display='none'" style="width:100%; margin-top:15px; padding:8px; border:none; background:#eee; cursor:pointer;">Fermer ce panneau</button>
     </div>
 
@@ -428,12 +533,17 @@
         let projectsData = {
     "p1": {
         "title": "WAKE UP !",
-        "description": "Idée de composition inspiré de références trouvé sur Pinterest.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n",
+        "description": "Idée de composition inspiré de références trouver sur Pinterest.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n",
         "images": [
             {
                 "type": "comparison",
                 "left": "illusion_phone.png",
                 "right": "illusion_clay.png"
+            },
+            {
+                "type": "comparison",
+                "left": "illusion_wire2.png",
+                "right": "illusion_wire.png"
             }
         ],
         "logos": [
@@ -446,7 +556,7 @@
     },
     "p1776008400790": {
         "title": "NATURE MORTE",
-        "description": "Comme toute nature morte, j'ai réunis différents objets de différentes textures et formes, j'ai essayé d'obtenir une composition harmonieuse avec des couleurs chaleureuses.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n\n\n",
+        "description": "Comme toute nature morte, j'ai réunis différents objets avec différentes textures et formes, le but était d'essayé d'obtenir une composition harmonieuse avec des couleurs chaudes.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n\n\n",
         "images": [
             {
                 "type": "comparison",
@@ -463,8 +573,8 @@
         "gridStyleMobile": "scale(2.44) translate(0%, 0%)"
     },
     "p1776009011648": {
-        "title": "PARFUMS TROIS SAVEURS",
-        "description": "J'ai voulu reproduire des parfums avec des formes intéressantes pour obtenir différentes réactions de la lumières, l'idée de cette composition m'est venu en regardant des publicités de parfums de luxe.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n",
+        "title": "PARFUMS TROIS ÉDITIONS",
+        "description": "Projet personnel, j'ai voulu reproduire quelques flacons de parfums qui était en ma possession pour faire ce rendu \"publicités\".\n\nLe placements des lights et le compositing on était sur quoi le travail à été le plus dirigé. Un projet qui m'a beaucoup sur l'importance d'une bonne lumière.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n",
         "images": [
             {
                 "type": "comparison",
@@ -480,6 +590,21 @@
                 "type": "comparison",
                 "left": "perfum2.png",
                 "right": "perfum2_noliquid.png"
+            },
+            {
+                "type": "comparison",
+                "left": "perfum3_clay.png",
+                "right": "perfum3_wire.png"
+            },
+            {
+                "type": "comparison",
+                "left": "perfum1_clay.png",
+                "right": "perfum1_wire.png"
+            },
+            {
+                "type": "comparison",
+                "left": "perfum2_clay.png",
+                "right": "perfum2_wire.png"
             }
         ],
         "logos": [
@@ -491,8 +616,8 @@
         "gridStyleMobile": "scale(2.55) translate(1%, 1%)"
     },
     "p1776010863745": {
-        "title": "SCÈNE D'INTERIEUR",
-        "description": "\nDans le cadre de ma formation, j'ai réalisé cette composition d'intérieur.\nMalgré que je ne sois pas satisfait du style sur lequel j'ai terminé ce rendu, j'ai beaucoup appris au cours de cet exercice autour de la méthodologie et des règles de composition.\n\n\nRéalisé entièrement sur Blender\nRetouché sur Photoshop\n\n\n",
+        "title": "SCÈNE D'INTÉRIEUR",
+        "description": "\nDans le cadre de ma formation, j'ai réalisé cette composition d'intérieur.\n\nJ'ai beaucoup appris à travers ce projet, notamment sur la méthodologie et les règles de composition.\n\n\nRéalisé entièrement sur Blender\nRetouche Compo sur Photoshop\n\n\n",
         "images": [
             "interieur1.png",
             {
@@ -517,7 +642,7 @@
     },
     "p1776015279303": {
         "title": "BOUCLIER DE GUERRE",
-        "description": "Dans le cadre de ma formation, j'ai réalisé cette exercice de texturing sur ce modèle 3D. Premiers pas sur Substance Painter et Marmoset Toolbag.\n\n\nTexturing et Baking sur Substance Painter\nRendu sur Marmoset Toolbag",
+        "description": "Premier exercice de texturing sur le logiciel avec ce modèle 3D de bouclier.\n\nJ'ai beaucoup appris sur les masque, génerateurs et differents outils de painting.\n\n\nTexturing et Baking sur Substance Painter\nRendu sur Marmoset Toolbag",
         "images": [
             {
                 "type": "comparison",
@@ -535,7 +660,7 @@
     },
     "p1776015280348": {
         "title": "THETIS LAKE MONSTER",
-        "description": "Dans le cadre de ma formation, j'ai modélisé ce personnage basé sur la créature humanoïde légendaire.\n\n\nModélisation/Sculpt sur ZBrush\nRetopo sur Blender\nBaking et Rendu sur Marmoset Toolbag",
+        "description": "Mon interpretation en 3D de la créature légendaire éponyme.\n\nL'exercice m'a permis de mieux comprendre l'anatomie humaine à travers le blocking et la simplification des formes.\n\nJ'ai commencé par assembler plusieurs bloc avant de les deformes,\npuis réunir le plus d'elements pour donner une meilleur vision global de l'objectif recherché. \n\nEnfin affiner les volumes pour faire ressortir les differentes parties.\nOn termine par faire la retopologie du maillage, le baking de la normal map et enfin le rendu.\n\nModélisation/Sculpt sur ZBrush\nRetopo sur Blender\nBaking et Rendu sur Marmoset Toolbag",
         "images": [
             "thetis_front.png",
             "thetis.png",
@@ -618,14 +743,20 @@
     "imgStyle": "scale(1) translate(0%, 0%)",
     "imgStyleMobile": "scale(1) translate(0%, 0%)"
 };
+        
+        // SAUVEGARDE DES BANNIÈRES SÉPARÉES
         let heroSrc = "canari_banniere_02.gif";
+        let heroSrcMobile = "canari_banniere_03.gif";
+        
         let heroStyle = "scale(5) translate(-3.5%, 23%)";
-        let heroStyleMobile = "scale(5) translate(-4.5%, 10%)";
+        let heroStyleMobile = "scale(4.35) translate(0%, 2%)";
         let heroText1Content = "\n";
         let heroText2Content = "DEFILEZ POUR VOIR LES TRAVAUX";
         let heroText1Style = {"desktop":{"size":60,"top":50,"left":50},"mobile":{"size":40,"top":20,"left":51.5}};
-        let heroText2Style = {"desktop":{"size":20,"top":87.5,"left":50},"mobile":{"size":16,"top":90,"left":50}};
-    </script>
+        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":86,"left":50}};
+        
+        let gridConfig = {"desktop":{"gap":66,"padding":220},"mobile":{"gap":10,"padding":10}};
+            </script>
 
     <script>
         let isEditing = false;
@@ -635,10 +766,19 @@
 
         const isMobile = () => window.innerWidth <= 768;
 
+        function applyGridConfig() {
+            const isMob = isMobile();
+            const config = isMob ? gridConfig.mobile : gridConfig.desktop;
+            const grid = document.getElementById('main-grid');
+            grid.style.gap = config.gap + "px";
+            grid.style.padding = isMob ? `${config.padding}px 10px` : `${config.padding}px 50px`;
+        }
+
         function initElements() {
             const isMob = isMobile();
             
-            document.getElementById('hero-img').src = heroSrc;
+            // LA BANNIERE S'ADAPTE AU MOBILE OU AU PC ICI
+            document.getElementById('hero-img').src = isMob ? heroSrcMobile : heroSrc;
             document.getElementById('hero-img').style.transform = isMob ? heroStyleMobile : heroStyle;
             
             const t1 = document.getElementById('hero-text-1');
@@ -662,6 +802,7 @@
                 dlBtn.download = fileName;
             }
 
+            applyGridConfig();
             renderGrid();
         }
 
@@ -878,9 +1019,9 @@
                 container.innerHTML = `<img src="${url1}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
             } else if (type === 'comparison') {
                 container.innerHTML = `
-                    <div style="position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center;">
-                        <img src="${url2}" class="comp-img-right" style="position: absolute; width: 100%; height: 100%; max-height: none; object-fit: contain;">
-                        <img src="${url1}" class="comp-img-left" id="comp-left-fs" style="position: absolute; clip-path: inset(0 50% 0 0); width: 100%; height: 100%; object-fit: contain;">
+                    <div class="comp-container" style="max-height: 100vh;">
+                        <img src="${url2}" class="comp-img-right" style="max-height: 100vh; width: auto; height: auto;">
+                        <img src="${url1}" class="comp-img-left" id="comp-left-fs" style="clip-path: inset(0 50% 0 0);">
                         <input type="range" min="0" max="100" value="50" class="comp-input" oninput="updateComparison(this, 'fs')">
                         <div class="comp-line" id="comp-line-fs">
                             <div class="comp-grip"></div>
@@ -892,7 +1033,6 @@
         }
         function closeFullscreen() { document.getElementById('fullscreen-overlay').style.display = 'none'; }
 
-        // Ajouts / Suppressions
         function addImageToProject() {
             let url = prompt("URL Image Simple :");
             if(url) { projectsData[currentProjectId].images.push(url); openProject(currentProjectId); }
@@ -925,7 +1065,10 @@
             }
         }
 
-        // === ÉDITION DE BASE ===
+        document.getElementById('btn-edit-grid').onclick = function() {
+            openEditor('grid', document.getElementById('main-grid'));
+        };
+
         function openEditor(type, element, projectId = null) {
             if(!isEditing) return;
             activeElementType = type; activeElement = element;
@@ -935,11 +1078,15 @@
             document.getElementById('edit-indicator').innerText = isMob ? "ÉDITION : MOBILE" : "ÉDITION : PC";
             document.getElementById('element-controls').style.display = 'block';
 
+            document.getElementById('ctrl-group-img').style.display = 'none';
+            document.getElementById('ctrl-group-txt').style.display = 'none';
+            document.getElementById('ctrl-group-grid').style.display = 'none';
+
             if (type === 'img') {
                 document.getElementById('ctrl-group-img').style.display = 'block';
-                document.getElementById('ctrl-group-txt').style.display = 'none';
                 
-                if (element.id === 'hero-img') document.getElementById('ctrl-val').value = heroSrc;
+                // On affiche la bonne source dans l'éditeur (mobile ou pc)
+                if (element.id === 'hero-img') document.getElementById('ctrl-val').value = isMob ? heroSrcMobile : heroSrc;
                 else if (element.id === 'info-img') document.getElementById('ctrl-val').value = infoData.img;
                 else if (projectId) document.getElementById('ctrl-val').value = projectsData[projectId].gridImg;
                 
@@ -959,7 +1106,6 @@
                 document.getElementById('ctrl-y').value = translateMatch ? translateMatch[2] : 0;
 
             } else if (type === 'text') {
-                document.getElementById('ctrl-group-img').style.display = 'none';
                 document.getElementById('ctrl-group-txt').style.display = 'block';
                 
                 let st = null;
@@ -971,6 +1117,11 @@
                     document.getElementById('ctrl-top').value = st.top;
                     document.getElementById('ctrl-left').value = st.left;
                 }
+            } else if (type === 'grid') {
+                document.getElementById('ctrl-group-grid').style.display = 'block';
+                let config = isMob ? gridConfig.mobile : gridConfig.desktop;
+                document.getElementById('ctrl-grid-gap').value = config.gap;
+                document.getElementById('ctrl-grid-padding').value = config.padding;
             }
         }
 
@@ -1007,6 +1158,18 @@
                 } else if (activeElement.id === 'hero-text-2') {
                     if(isMob) heroText2Style.mobile = styleObj; else heroText2Style.desktop = styleObj;
                 }
+            } else if (activeElementType === 'grid') {
+                const gap = parseInt(document.getElementById('ctrl-grid-gap').value);
+                const padding = parseInt(document.getElementById('ctrl-grid-padding').value);
+                
+                activeElement.style.gap = gap + "px";
+                activeElement.style.padding = isMob ? `${padding}px 10px` : `${padding}px 50px`;
+                
+                if (isMob) {
+                    gridConfig.mobile = { gap: gap, padding: padding };
+                } else {
+                    gridConfig.desktop = { gap: gap, padding: padding };
+                }
             }
         }
 
@@ -1015,6 +1178,7 @@
             document.body.classList.toggle('editing');
             this.innerText = isEditing ? "Quitter l'Édition" : "Mode Édition";
             document.getElementById('btn-save-code').style.display = isEditing ? 'block' : 'none';
+            document.getElementById('btn-edit-grid').style.display = isEditing ? 'block' : 'none';
             document.getElementById('element-controls').style.display = 'none';
             
             document.getElementById('hero-text-1').contentEditable = isEditing;
@@ -1030,19 +1194,31 @@
             ds.innerHTML = `
         let projectsData = ${JSON.stringify(projectsData, null, 4)};
         let infoData = ${JSON.stringify(infoData, null, 4)};
+        
+        // SAUVEGARDE DES BANNIÈRES SÉPARÉES
         let heroSrc = ${JSON.stringify(heroSrc)};
+        let heroSrcMobile = ${JSON.stringify(heroSrcMobile)};
+        
         let heroStyle = ${JSON.stringify(heroStyle)};
         let heroStyleMobile = ${JSON.stringify(heroStyleMobile)};
         let heroText1Content = ${JSON.stringify(document.getElementById('hero-text-1').innerText)};
         let heroText2Content = ${JSON.stringify(document.getElementById('hero-text-2').innerText)};
         let heroText1Style = ${JSON.stringify(heroText1Style)};
         let heroText2Style = ${JSON.stringify(heroText2Style)};
+        
+        let gridConfig = ${JSON.stringify(gridConfig)};
             `;
             
             const wasEditing = isEditing;
-            if(wasEditing) document.getElementById('btn-toggle-edit').click();
+            if(wasEditing) {
+                document.getElementById('btn-toggle-edit').click();
+            }
+            
+            document.getElementById('editor-toolbar').style.display = 'none';
+            logoClickCount = 0; 
+            
             navigator.clipboard.writeText(document.documentElement.outerHTML).then(() => {
-                alert("Code copié avec succès !");
+                alert("Code copié avec succès ! La barre d'édition est bien cachée par défaut dans le nouveau code.");
             });
         };
 
@@ -1071,14 +1247,22 @@
             }
         });
 
-        ['ctrl-scale', 'ctrl-x', 'ctrl-y', 'ctrl-font', 'ctrl-top', 'ctrl-left'].forEach(id => {
+        // Application en direct lors du mouvement des curseurs
+        ['ctrl-scale', 'ctrl-x', 'ctrl-y', 'ctrl-font', 'ctrl-top', 'ctrl-left', 'ctrl-grid-gap', 'ctrl-grid-padding'].forEach(id => {
             document.getElementById(id).oninput = applyStyles;
         });
         
         document.getElementById('ctrl-val').oninput = (e) => {
             if(activeElementType === 'img' && activeElement) {
                 activeElement.src = e.target.value;
-                if(activeElement.id === 'hero-img') heroSrc = e.target.value;
+                if(activeElement.id === 'hero-img') {
+                    // On enregistre dans la bonne variable selon l'écran
+                    if (isMobile()) {
+                        heroSrcMobile = e.target.value;
+                    } else {
+                        heroSrc = e.target.value;
+                    }
+                }
                 else if(activeElement.id === 'info-img') {
                     infoData.img = e.target.value;
                     const dlBtn = document.getElementById('download-cv-btn');
@@ -1113,5 +1297,5 @@
         });
 
     </script>
-</body>
-</html>
+
+</body></html>
