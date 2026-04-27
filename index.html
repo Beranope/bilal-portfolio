@@ -1,5 +1,4 @@
-<html lang="fr">
-<head>
+<html lang="fr"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bilal Berrane - Portfolio</title>
@@ -27,28 +26,11 @@
             align-items: center;
             padding: 10px 50px;
             background-color: #ffffff;
-            position: sticky;
-            top: 0;
+            position: relative; /* Modifié : N'est plus en position sticky */
             z-index: 100;
             min-height: 80px;
         }
 
-        .nav-left-icon, .nav-right-icon {
-            position: absolute;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .nav-left-icon { left: 50px; }
-        .nav-right-icon { right: 50px; }
-
-        .nav-left-icon:hover, .nav-right-icon:hover { transform: scale(1.1); }
-        .nav-left-icon svg, .nav-right-icon svg { width: 40px; height: 40px; fill: #000; }
-        
         .logo-center { cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .logo-center img, .logo-center video { height: 140px; object-fit: contain; display: block; background: transparent;}
 
@@ -107,7 +89,6 @@
         }
         .modal-container.active { opacity: 1; display: block; }
 
-        /* BOUTON FERMER GLOBAL */
         .close-btn {
             position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer;
             z-index: 2100; border: none; background: none; color: #000; transition: 0.3s;
@@ -115,18 +96,11 @@
         .close-btn:hover { transform: scale(1.1); }
 
         .modal-content-wrapper { 
-            display: flex; 
-            flex-direction: row; 
-            width: 100%; 
-            height: 100%; 
-            background: #fff;
+            display: flex; flex-direction: row; width: 100%; height: 100%; background: #fff;
         }
 
         .image-slider-zone {
-            position: relative; 
-            width: 75%; 
-            height: 100%; 
-            background: #f9f9f9;
+            position: relative; width: 75%; height: 100%; background: #f9f9f9;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
 
@@ -138,21 +112,12 @@
         }
         .slider-track::-webkit-scrollbar { display: none; }
 
-        /* STYLE IMAGE UNIVERSEL HARMONISÉ */
         .slide-img {
             min-width: 100%; flex: 0 0 100%; height: 100%; scroll-snap-align: start; padding: 20px; box-sizing: border-box;
-            display: flex; justify-content: center; align-items: center; position: relative;
-            overflow: hidden; 
+            display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; 
         }
         
-        .slide-img > img { 
-            max-width: 100%; 
-            max-height: calc(100vh - 120px); 
-            width: auto; 
-            height: auto; 
-            object-fit: contain; 
-            display: block; 
-        }
+        .slide-img > img { max-width: 100%; max-height: calc(100vh - 120px); width: auto; height: auto; object-fit: contain; display: block; }
 
         .info-fixed-zone { 
             width: 25%; height: 100%; padding: 40px; box-sizing: border-box; background: #fff; 
@@ -166,7 +131,6 @@
         .slide-logos { display: flex; justify-content: flex-start; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
         .slide-logos img { width: 35px; height: 35px; object-fit: contain; cursor: pointer; }
 
-        /* BOUTON TÉLÉCHARGER */
         .download-btn {
             display: inline-block; padding: 15px 35px; background-color: #000; color: #fff;
             text-decoration: none; font-weight: bold; font-size: 16px; text-transform: uppercase;
@@ -174,78 +138,35 @@
         }
         .download-btn:hover { transform: scale(1.05); background-color: #333; }
 
-        /* =========================================
-           MODULE DE COMPARAISON D'IMAGES UNIVERSEL HARMONISÉ
-        ========================================= */
-        .comp-container {
-            position: relative; 
-            display: inline-block; /* Aligne le conteneur sur l'image */
-            max-width: 100%; 
-            margin: 0 auto; 
-            line-height: 0; 
-            vertical-align: middle;
-            overflow: hidden; 
-        }
-        
-        .comp-img-right {
-            display: block; 
-            max-width: 100%; 
-            max-height: calc(100vh - 120px); 
-            width: auto; 
-            height: auto; 
-            object-fit: contain; /* Sécurité maximale */
-        }
-        
-        .comp-img-left {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; /* Changé de "cover" à "contain" pour épouser 100% l'image droite */
-            pointer-events: none;
-        }
+        .comp-container { position: relative; display: inline-block; max-width: 100%; margin: 0 auto; line-height: 0; vertical-align: middle; overflow: hidden; }
+        .comp-img-right { display: block; max-width: 100%; max-height: calc(100vh - 120px); width: auto; height: auto; object-fit: contain; }
+        .comp-img-left { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
         
         .comp-input {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0;
-            z-index: 10; margin: 0; touch-action: pan-y;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 10; margin: 0; touch-action: pan-y;
             -webkit-appearance: none; appearance: none; background: transparent; pointer-events: auto; cursor: ew-resize;
         }
-        .comp-input::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none; width: 50px; height: 10000px;
-            pointer-events: auto; cursor: ew-resize;
-        }
-        .comp-input::-moz-range-thumb {
-            width: 50px; height: 10000px; pointer-events: auto; cursor: ew-resize; border: none; background: transparent;
-        }
+        .comp-input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 50px; height: 10000px; pointer-events: auto; cursor: ew-resize; }
+        .comp-input::-moz-range-thumb { width: 50px; height: 10000px; pointer-events: auto; cursor: ew-resize; border: none; background: transparent; }
 
         .comp-line {
-            position: absolute; top: 0; bottom: 0; left: 50%; width: 8px;
-            background: #ffffff; z-index: 5; pointer-events: none;
-            transform: translateX(-50%); box-shadow: 0 0 8px rgba(0,0,0,0.5);
-            border-left: 1px solid rgba(0,0,0,0.1); border-right: 1px solid rgba(0,0,0,0.1);
+            position: absolute; top: 0; bottom: 0; left: 50%; width: 8px; background: #ffffff; z-index: 5; pointer-events: none;
+            transform: translateX(-50%); box-shadow: 0 0 8px rgba(0,0,0,0.5); border-left: 1px solid rgba(0,0,0,0.1); border-right: 1px solid rgba(0,0,0,0.1);
         }
         .comp-grip {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 2px; height: 30px; background: rgba(0,0,0,0.25); border-radius: 2px;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 2px; height: 30px; background: rgba(0,0,0,0.25); border-radius: 2px;
         }
 
-        /* =========================================
-           BOUTONS & FLÈCHES
-        ========================================= */
         .btn-fullscreen-wrapper { position: absolute; bottom: 20px; right: 20px; z-index: 100; pointer-events: none; }
-        
         .btn-fullscreen {
-            pointer-events: auto; background: rgba(255, 255, 255, 0.5); color: #000; border: none; 
-            width: 45px; height: 45px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; 
-            justify-content: center; font-size: 24px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            pointer-events: auto; background: rgba(255, 255, 255, 0.5); color: #000; border: none; width: 45px; height: 45px; border-radius: 8px; 
+            cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         .btn-fullscreen:hover { background: rgba(255, 255, 255, 0.9); transform: scale(1.05); }
 
         .nav-arrow {
-            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.5);
-            border: none; color: #000; font-size: 30px; padding: 0; cursor: pointer; z-index: 50;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.5); border: none; color: #000; font-size: 30px; 
+            padding: 0; cursor: pointer; z-index: 50; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             width: 50px; height: 50px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         .nav-arrow:hover { background: rgba(255, 255, 255, 0.9); transform: translateY(-50%) scale(1.05); }
@@ -254,12 +175,8 @@
 
         .scroll-indicator { display: none; }
 
-        /* =========================================
-           PLEIN ÉCRAN
-        ========================================= */
         #fullscreen-overlay {
-            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
-            background: #000; z-index: 3000; justify-content: center; align-items: center;
+            display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: #000; z-index: 3000; justify-content: center; align-items: center;
         }
         #fs-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
         .close-fs { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; background: none; border: none; z-index: 3100;}
@@ -269,113 +186,152 @@
         body.editing .edit-controls-inline { display: flex; }
 
         #editor-toolbar {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: #222; color: #fff; padding: 10px 20px; border-radius: 50px; display: flex; gap: 15px; z-index: 9999;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 10px 20px; 
+            border-radius: 50px; display: flex; gap: 15px; z-index: 9999;
         }
         #editor-toolbar button { padding: 8px 15px; cursor: pointer; border-radius: 20px; border: none; font-size: 12px; font-weight: bold; }
 
         /* =========================================
-           MODIFICATIONS DESKTOP (PC)
+           4. CONTACT SECTION
+        ========================================= */
+        .contact-section {
+            padding: 60px 20px;
+            background-color: #ffffff;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .contact-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        .contact-boxes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .contact-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            text-decoration: none;
+            transition: transform 0.3s;
+            overflow: hidden;
+            position: relative;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 12px; /* Un léger arrondi pour éviter que les images personnalisées ne débordent de manière inesthétique */
+        }
+        .contact-icon-btn:hover {
+            transform: scale(1.15);
+        }
+        .contact-icon-btn svg {
+            width: 45px;
+            height: 45px;
+            fill: #000;
+        }
+        .contact-icon-custom img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        body.editing .contact-icon-custom {
+            border: 2px dashed #ff4757;
+            background: #f9f9f9;
+        }
+
+        /* =========================================
+           RESPONSIVE
         ========================================= */
         @media (min-width: 769px) {
             .btn-fullscreen-wrapper { position: absolute; bottom: 20px; right: 20px; }
         }
 
-        /* =========================================
-           RESPONSIVE (MOBILE)
-        ========================================= */
         @media (max-width: 768px) {
             header { padding: 10px 20px; min-height: 60px; }
-            .nav-left-icon { left: 20px; } .nav-right-icon { right: 20px; }
             .logo-center img, .logo-center video { height: 85px; }
             .portfolio-grid { grid-template-columns: 1fr; }
-            
             .nav-arrow { width: 40px; height: 40px; font-size: 24px; }
-            .arrow-prev { left: 10px; }
-            .arrow-next { right: 10px; }
+            .arrow-prev { left: 10px; } .arrow-next { right: 10px; }
             
             .close-btn { 
-                top: 15px; right: 15px; font-size: 30px; width: 40px; height: 40px; 
-                background: rgba(255, 255, 255, 0.9); border-radius: 50%; 
-                display: flex; align-items: center; justify-content: center; 
-                box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2500;
+                top: 15px; right: 15px; font-size: 30px; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; 
+                display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 2500;
             }
 
             .modal-content-wrapper { flex-direction: column; height: 100%; overflow: hidden; background: #fff;}
-            
-            .image-slider-zone { 
-                width: 100%; height: 50vh; flex-shrink: 0; display: block; background: #f9f9f9; 
-            } 
-            
+            .image-slider-zone { width: 100%; height: 50vh; flex-shrink: 0; display: block; background: #f9f9f9; } 
             .slider-track { height: 100%; align-items: center; overflow-y: hidden; }
-            
-            .slide-img { 
-                min-width: 100%; flex: 0 0 100%; height: 100%; padding: 10px; overflow: hidden;
-                display: flex; justify-content: center; align-items: center; position: relative;
-            }
-            
-            .slide-img > img { 
-                max-width: 100%; height: auto; max-height: calc(50vh - 20px); display: block; margin: 0 auto;
-            }
-            
+            .slide-img { min-width: 100%; flex: 0 0 100%; height: 100%; padding: 10px; overflow: hidden; display: flex; justify-content: center; align-items: center; position: relative; }
+            .slide-img > img { max-width: 100%; height: auto; max-height: calc(50vh - 20px); display: block; margin: 0 auto; }
             .comp-img-right { max-height: calc(50vh - 20px); }
             
             .info-fixed-zone { 
-                width: 100%; flex-grow: 1; height: 50vh; padding: 20px 20px 60px 20px; 
-                border-left: none; border-top: none; justify-content: flex-start; text-align: center; 
-                overflow-y: auto; display: block;
+                width: 100%; flex-grow: 1; height: 50vh; padding: 20px 20px 60px 20px; border-left: none; border-top: none; 
+                justify-content: flex-start; text-align: center; overflow-y: auto; display: block;
             }
-
             .info-fixed-zone h2 { font-size: 22px; padding-top: 0; }
             .info-fixed-zone p { font-size: 14px; }
-            
             .slide-logos { justify-content: center; }
             .edit-controls-inline { flex-direction: row; justify-content: center; }
-            
             .btn-fullscreen-wrapper { position: absolute; bottom: 20px; right: 20px; margin-top: 0; display: block; }
+            
+            /* Ajustements icônes contact sur mobile */
+            .contact-boxes { gap: 20px; }
+            .contact-icon-btn { width: 50px; height: 50px; }
+            .contact-icon-btn svg { width: 35px; height: 35px; }
 
             .scroll-indicator {
-                display: none; 
-                position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
-                width: 40px; height: 40px; justify-content: center; align-items: center;
-                background: rgba(255, 255, 255, 0.95); border-radius: 50%;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2500; pointer-events: none;
-                animation: bounce 1.5s infinite; transition: opacity 0.3s;
+                display: none; position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; 
+                justify-content: center; align-items: center; background: rgba(255, 255, 255, 0.95); border-radius: 50%;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2500; pointer-events: none; animation: bounce 1.5s infinite; transition: opacity 0.3s;
             }
             .scroll-indicator svg { width: 24px; height: 24px; fill: #000; }
-            
-            @keyframes bounce {
-                0%, 100% { transform: translateX(-50%) translateY(0); }
-                50% { transform: translateX(-50%) translateY(8px); }
-            }
+            @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
         }
     </style>
 </head>
 <body style="overflow: auto;" class="">
 
     <header>
-        <a href="mailto:ber.bilal@outlook.fr" class="nav-left-icon">
-            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-        </a>
-        
         <div class="logo-center" id="secret-logo-btn">
-            <video src="logo.mp4" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"></video>
-            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: none;">
-        </div>
-
-        <div class="nav-right-icon" onclick="openInfo()">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+            <video src="logo.mp4" autoplay="" loop="" muted="" playsinline="" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';" style="display: none;"></video>
+            <img id="fallback-logo" src="Logo_Gif.gif" alt="Logo" style="display: block;">
         </div>
     </header>
 
     <section class="hero-banner" id="hero-section">
-        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.572);"></div>
-        <div id="hero-text-1" class="hero-text-zone" style="font-size: 40px; top: 20%; left: 51.5%;" contenteditable="false"><br></div>
-        <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 86%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
-        <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(4.35) translate(0%, 2%);">
+        <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+        <div id="hero-text-1" class="hero-text-zone" style="font-size: 60px; top: 50%; left: 50%;" contenteditable="false"><br></div>
+        <div id="hero-text-2" class="hero-text-zone" style="font-size: 20px; top: 76%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
+        <img src="canari_banniere_02.gif" id="hero-img" style="transform: scale(5) translate(-3.5%, 23%);">
     </section>
 
-    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2);"></section>
+    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2); gap: 66px; padding: 220px 50px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.96) translate(3.5%, 2%)"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.39) translate(0%, 0%)"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.63) translate(1.5%, 1.5%)"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.19) translate(0%, 0%)"></div><div class="grid-item"><img src="shield.png" style="transform: scale(2.3) translate(-10%, 0%)"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(3.21) translate(0%, 5.5%)"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.14) translate(-1.5%, 17%)"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.59) translate(1.5%, 4.5%)"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.53) translate(-13%, 1%)"></div></section>
+
+    <section class="contact-section" id="contact">
+        <h2 class="contact-title">Contact</h2>
+        <div class="contact-boxes">
+            <a href="mailto:ber.bilal@outlook.fr" class="contact-icon-btn">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+            </a>
+            
+            <a href="https://linkedin.com/in/bilal-berrane-9462ba281" id="contact-link-1" target="_blank" class="contact-icon-btn contact-icon-custom" onclick="handleContactClick(event, 'contact1')">
+                <img id="contact-img-1" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" style="transform: scale(0.8) translate(0%, 0%);">
+            </a>
+            
+            <div class="contact-icon-btn" onclick="openInfo()">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+            </div>
+        </div>
+    </section>
 
     <div id="project-modal" class="modal-container" style="display: none;">
         <button class="close-btn" onclick="closeProject()">×</button>
@@ -423,16 +379,22 @@
 
     <div id="editor-toolbar" style="display: none;">
         <button id="btn-toggle-edit" style="background:#ff4757;">Mode Édition</button>
-        <button id="btn-edit-grid" style="background: #3498db; display: none;">Éditer Espacements</button>
+        <button id="btn-edit-grid" style="background: rgb(52, 152, 219); display: none;">Éditer Espacements</button>
         <button id="btn-save-code" style="background: rgb(46, 213, 115); display: none;">Copier Code Final</button>
     </div>
 
     <div id="element-controls" style="display: none; position: fixed; top: 20px; right: 20px; width: 260px; background: white; padding: 20px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 25px; z-index: 10000;">
-        <div id="edit-indicator" style="font-size:12px; font-weight:bold; color:#ff4757; text-align:center; margin-bottom:15px;">ÉDITION : MOBILE</div>
+        <div id="edit-indicator" style="font-size:12px; font-weight:bold; color:#ff4757; text-align:center; margin-bottom:15px;">ÉDITION : PC</div>
         
         <div id="ctrl-group-img" style="display: block;">
             <h4 style="font-size:10px; margin:0 0 5px 0;">URL IMAGE</h4>
             <textarea id="ctrl-val" style="width:100%; height:40px;"></textarea>
+            
+            <div id="ctrl-contact-link-wrap" style="display: block;">
+                <h4 style="font-size:10px; margin:10px 0 5px 0;">LIEN DU SITE (URL)</h4>
+                <textarea id="ctrl-contact-url" style="width:100%; height:40px;"></textarea>
+            </div>
+
             <label style="font-size:10px;">Zoom</label>
             <input type="range" id="ctrl-scale" min="0.1" max="5" step="0.01" style="width:100%;">
             <label style="font-size:10px;">Position X / Y</label>
@@ -685,7 +647,15 @@
         let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":86,"left":50}};
         
         let gridConfig = {"desktop":{"gap":66,"padding":220},"mobile":{"gap":10,"padding":10}};
-    </script>
+        let contactData = {
+    "contact1": {
+        "url": "https://linkedin.com/in/bilal-berrane-9462ba281",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+        "style": "scale(0.8) translate(0%, 0%)",
+        "styleMobile": "scale(0.8) translate(0%, 0%)"
+    }
+};
+            </script>
 
     <script>
         let isEditing = false;
@@ -718,11 +688,9 @@
             t1.style.fontSize = st1.size + "px"; t1.style.top = st1.top + "%"; t1.style.left = st1.left + "%";
             t2.style.fontSize = st2.size + "px"; t2.style.top = st2.top + "%"; t2.style.left = st2.left + "%";
             
-            // Initialisation de la modale Info (CV)
             document.getElementById('info-img').src = infoData.img;
             document.getElementById('info-img').style.transform = isMob ? (infoData.imgStyleMobile || infoData.imgStyle) : infoData.imgStyle;
             
-            // Mise à jour du bouton de téléchargement avec le nom du fichier
             const dlBtn = document.getElementById('download-cv-btn');
             if (dlBtn) {
                 dlBtn.href = infoData.img;
@@ -730,8 +698,30 @@
                 dlBtn.download = fileName;
             }
 
+            ['contact1'].forEach((id, index) => {
+                const data = contactData[id];
+                if(data) {
+                    const linkEl = document.getElementById('contact-link-' + (index + 1));
+                    const imgEl = document.getElementById('contact-img-' + (index + 1));
+                    if (linkEl) linkEl.href = data.url || "#";
+                    if (imgEl) {
+                        imgEl.src = data.img || "";
+                        imgEl.style.transform = isMob ? (data.styleMobile || data.style) : data.style;
+                    }
+                }
+            });
+
             applyGridConfig();
             renderGrid();
+        }
+
+        function handleContactClick(event, id) {
+            if (isEditing) {
+                event.preventDefault(); 
+                const index = id === 'contact1' ? 1 : 2;
+                const imgEl = document.getElementById('contact-img-' + index);
+                openEditor('img', imgEl, id);
+            }
         }
 
         function renderGrid() {
@@ -851,7 +841,6 @@
                 div.className = 'slide-img';
 
                 if (typeof item === 'string') {
-                    // Ajout du onload magique pour faire apparaitre la fleche quand l'image est prete
                     div.innerHTML = `
                         <img src="${item}" onload="updateArrowsVisibility()">
                         <div class="btn-fullscreen-wrapper">
@@ -860,7 +849,6 @@
                     `;
                 } 
                 else if (item.type === 'comparison') {
-                    // Ajout du onload sur l'image principale pour valider la fleche
                     div.innerHTML = `
                         <div class="comp-container">
                             <img src="${item.right}" class="comp-img-right" onload="updateArrowsVisibility()">
@@ -884,7 +872,6 @@
 
             document.getElementById('project-modal').style.display = 'block';
             track.scrollLeft = 0;
-            
             document.getElementById('project-info-zone').scrollTop = 0;
 
             setTimeout(() => { 
@@ -1002,7 +989,7 @@
         function openEditor(type, element, projectId = null) {
             if(!isEditing) return;
             activeElementType = type; activeElement = element;
-            if (projectId) currentProjectId = projectId;
+            if (projectId) currentProjectId = projectId; else currentProjectId = null;
             
             const isMob = isMobile();
             document.getElementById('edit-indicator').innerText = isMob ? "ÉDITION : MOBILE" : "ÉDITION : PC";
@@ -1014,16 +1001,26 @@
 
             if (type === 'img') {
                 document.getElementById('ctrl-group-img').style.display = 'block';
+                const linkWrap = document.getElementById('ctrl-contact-link-wrap');
+                
+                if (currentProjectId && currentProjectId.startsWith('contact')) {
+                    linkWrap.style.display = 'block';
+                    document.getElementById('ctrl-contact-url').value = contactData[currentProjectId].url || "";
+                } else {
+                    linkWrap.style.display = 'none';
+                }
                 
                 if (element.id === 'hero-img') document.getElementById('ctrl-val').value = isMob ? heroSrcMobile : heroSrc;
                 else if (element.id === 'info-img') document.getElementById('ctrl-val').value = infoData.img;
-                else if (projectId) document.getElementById('ctrl-val').value = projectsData[projectId].gridImg;
+                else if (currentProjectId && currentProjectId.startsWith('contact')) document.getElementById('ctrl-val').value = contactData[currentProjectId].img || "";
+                else if (currentProjectId) document.getElementById('ctrl-val').value = projectsData[currentProjectId].gridImg;
                 
                 let currentStyle = element.style.transform;
                 if(!currentStyle || currentStyle === 'none') {
                     if(element.id === 'hero-img') currentStyle = isMob ? heroStyleMobile : heroStyle;
                     else if (element.id === 'info-img') currentStyle = isMob ? (infoData.imgStyleMobile || infoData.imgStyle) : infoData.imgStyle;
-                    else if(projectId) currentStyle = isMob ? (projectsData[projectId].gridStyleMobile || projectsData[projectId].gridStyle) : projectsData[projectId].gridStyle;
+                    else if(currentProjectId && currentProjectId.startsWith('contact')) currentStyle = isMob ? (contactData[currentProjectId].styleMobile || contactData[currentProjectId].style) : contactData[currentProjectId].style;
+                    else if(currentProjectId) currentStyle = isMob ? (projectsData[currentProjectId].gridStyleMobile || projectsData[currentProjectId].gridStyle) : projectsData[currentProjectId].gridStyle;
                 }
                 if(!currentStyle || currentStyle === 'none') currentStyle = "scale(1) translate(0%, 0%)";
                 
@@ -1069,6 +1066,8 @@
                     if(isMob) heroStyleMobile = style; else heroStyle = style;
                 } else if(activeElement.id === 'info-img') {
                     if(isMob) infoData.imgStyleMobile = style; else infoData.imgStyle = style;
+                } else if(currentProjectId && currentProjectId.startsWith('contact')) {
+                    if(isMob) contactData[currentProjectId].styleMobile = style; else contactData[currentProjectId].style = style;
                 } else if(currentProjectId) {
                     if(isMob) projectsData[currentProjectId].gridStyleMobile = style; else projectsData[currentProjectId].gridStyle = style;
                 }
@@ -1135,6 +1134,7 @@
         let heroText2Style = ${JSON.stringify(heroText2Style)};
         
         let gridConfig = ${JSON.stringify(gridConfig)};
+        let contactData = ${JSON.stringify(contactData, null, 4)};
             `;
             
             const wasEditing = isEditing;
@@ -1197,14 +1197,26 @@
                         dlBtn.download = e.target.value.split('/').pop() || 'Document.png';
                     }
                 }
-                else if(currentProjectId) projectsData[currentProjectId].gridImg = e.target.value;
+                else if(currentProjectId && currentProjectId.startsWith('contact')) {
+                    contactData[currentProjectId].img = e.target.value;
+                }
+                else if(currentProjectId) {
+                    projectsData[currentProjectId].gridImg = e.target.value;
+                }
+            }
+        };
+
+        document.getElementById('ctrl-contact-url').oninput = (e) => {
+            if(activeElementType === 'img' && currentProjectId && currentProjectId.startsWith('contact')) {
+                contactData[currentProjectId].url = e.target.value;
+                const index = currentProjectId === 'contact1' ? 1 : 2;
+                document.getElementById('contact-link-' + index).href = e.target.value;
             }
         };
 
         document.getElementById('hero-img').onclick = function() { openEditor('img', this); };
         document.getElementById('hero-text-1').onclick = function() { openEditor('text', this); };
         document.getElementById('hero-text-2').onclick = function() { openEditor('text', this); };
-        
         document.getElementById('info-img').onclick = function() { if (isEditing) openEditor('img', this); };
 
         window.addEventListener('scroll', () => {
@@ -1219,9 +1231,9 @@
             document.getElementById('element-controls').style.display = 'none';
             initElements();
             updateArrowsVisibility();
-            if (currentProjectId) checkScrollIndicator('project-info-zone', 'project-scroll-ind');
+            if (currentProjectId && !currentProjectId.startsWith('contact')) checkScrollIndicator('project-info-zone', 'project-scroll-ind');
         });
 
     </script>
-</body>
-</html>
+
+</body></html>
