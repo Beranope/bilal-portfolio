@@ -309,12 +309,12 @@
 
     <section class="hero-banner" id="hero-section">
         <div class="banner-overlay" style="background-color: rgba(0, 0, 0, 0.5);"></div>
-        <div id="hero-text-1" class="hero-text-zone" style="font-size: 60px; top: 50%; left: 50%;" contenteditable="false"><br></div>
-        <div id="hero-text-2" class="hero-text-zone" style="font-size: 20px; top: 76%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
-        <img src="canari_banniere_02.gif" id="hero-img" style="transform: scale(5) translate(-3.5%, 23%);">
+        <div id="hero-text-1" class="hero-text-zone" style="font-size: 40px; top: 20%; left: 51.5%;" contenteditable="false"><br></div>
+        <div id="hero-text-2" class="hero-text-zone" style="font-size: 16px; top: 76.5%; left: 50%;" contenteditable="false">DEFILEZ POUR VOIR LES TRAVAUX</div>
+        <img src="canari_banniere_03.gif" id="hero-img" style="transform: scale(4.35) translate(0%, 2%);">
     </section>
 
-    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2); gap: 66px; padding: 220px 50px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.96) translate(3.5%, 2%)"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.39) translate(0%, 0%)"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.63) translate(1.5%, 1.5%)"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.19) translate(0%, 0%)"></div><div class="grid-item"><img src="shield.png" style="transform: scale(2.3) translate(-10%, 0%)"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(3.21) translate(0%, 5.5%)"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.14) translate(-1.5%, 17%)"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.59) translate(1.5%, 4.5%)"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.53) translate(-13%, 1%)"></div></section>
+    <section class="portfolio-grid" id="main-grid" style="filter: brightness(0.2); gap: 10px; padding: 10px;"><div class="grid-item"><img src="illusion_phone.png" style="transform: scale(1.91) translate(4.5%, 0%)"></div><div class="grid-item"><img src="nature_morte.png" style="transform: scale(2.44) translate(0%, 0%)"></div><div class="grid-item"><img src="canari_turn_02.gif" style="transform: scale(2.55) translate(1%, 1%)"></div><div class="grid-item"><img src="interieursplit.png" style="transform: scale(1.2) translate(0%, 0%)"></div><div class="grid-item"><img src="shield.png" style="transform: scale(1.92) translate(0%, 0%)"></div><div class="grid-item"><img src="thetis.png" style="transform: scale(4.2) translate(1%, 8.5%)"></div><div class="grid-item"><img src="robot.png" style="transform: scale(2.18) translate(-4.5%, 17.5%)"></div><div class="grid-item"><img src="chest.png" style="transform: scale(1.55) translate(2%, 0%)"></div><div class="grid-item"><img src="dino.png" style="transform: scale(2.38) translate(-13%, 0%)"></div></section>
 
     <section class="contact-section" id="contact">
         <h2 class="contact-title">Contact</h2>
@@ -384,9 +384,9 @@
     </div>
 
     <div id="element-controls" style="display: none; position: fixed; top: 20px; right: 20px; width: 260px; background: white; padding: 20px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 25px; z-index: 10000;">
-        <div id="edit-indicator" style="font-size:12px; font-weight:bold; color:#ff4757; text-align:center; margin-bottom:15px;">ÉDITION : PC</div>
+        <div id="edit-indicator" style="font-size:12px; font-weight:bold; color:#ff4757; text-align:center; margin-bottom:15px;">ÉDITION : MOBILE</div>
         
-        <div id="ctrl-group-img" style="display: block;">
+        <div id="ctrl-group-img" style="display: none;">
             <h4 style="font-size:10px; margin:0 0 5px 0;">URL IMAGE</h4>
             <textarea id="ctrl-val" style="width:100%; height:40px;"></textarea>
             
@@ -402,7 +402,7 @@
             <input type="range" id="ctrl-y" min="-200" max="200" step="0.5" style="width:100%;">
         </div>
 
-        <div id="ctrl-group-txt" style="display: none;">
+        <div id="ctrl-group-txt" style="display: block;">
             <label style="font-size:10px;">Taille du texte (px)</label>
             <input type="range" id="ctrl-font" min="10" max="200" step="1" style="width:100%;">
             <label style="font-size:10px;">Position Verticale (Top %)</label>
@@ -644,7 +644,7 @@
         let heroText1Content = "\n";
         let heroText2Content = "DEFILEZ POUR VOIR LES TRAVAUX";
         let heroText1Style = {"desktop":{"size":60,"top":50,"left":50},"mobile":{"size":40,"top":20,"left":51.5}};
-        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":86,"left":50}};
+        let heroText2Style = {"desktop":{"size":20,"top":76,"left":50},"mobile":{"size":16,"top":76.5,"left":50}};
         
         let gridConfig = {"desktop":{"gap":66,"padding":220},"mobile":{"gap":10,"padding":10}};
         let contactData = {
@@ -1235,5 +1235,6 @@
         });
 
     </script>
+
 
 </body></html>
